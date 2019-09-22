@@ -1,0 +1,12 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namespace: ${NAMESPACE:-anydevops}
+
+resources:
+- namespace.yaml
+- secret.yaml 
+- pingaccess
+- pingdirectory
+- pingfederate
+- pingdataconsole

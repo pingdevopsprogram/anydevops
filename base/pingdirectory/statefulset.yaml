@@ -1,0 +1,88 @@
+# This defines the deployment (as a stateful set) of the pingdirectory servers
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ds
+spec:
+  serviceName: pingdirectory
+  replicas: 1
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: OrderedReady
+  template:
+    metadata:
+      annotations:
+        lastUpdateTime: "NA"
+    spec:
+      volumes:
+      # - name: passwords
+      #   secret:
+      #     secretName: passwords
+      #     defaultMode: 256
+      - name: out-dir
+        persistentVolumeClaim:
+          claimName: out-dir
+      terminationGracePeriodSeconds: 300
+      containers:
+      - name: ds
+        image: pingidentity/pingdirectory:edge
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 389
+          name: ldap
+        - containerPort: 636
+          name: ldaps
+        - containerPort: 8443
+          name: https
+        resources:
+          requests:
+            memory: "8Gi"
+            cpu: "2"
+          limits:
+            memory: "8Gi"
+            cpu: "2"
+        env:
+        - name: K8S_STATEFUL_SET_NAME
+          value: $(K8S_STATEFUL_SET_NAME)
+        - name: K8S_STATEFUL_SET_SERVICE_NAME
+          value: $(K8S_STATEFUL_SET_SERVICE_NAME)
+        - name: MAX_HEAP_SIZE
+          value: 8g
+        - name: UNBOUNDID_JAVA_ARGS
+          value: "-client -Xmx8g -Xms8g"
+        envFrom:
+        - configMapRef:
+            name: pingdirectory-environment-variables
+        volumeMounts:
+        - name: out-dir
+          mountPath: /opt/out
+        # - name: passwords
+        #   mountPath: /usr/local/secrets
+        #   readOnly: true
+        readinessProbe:
+          exec:
+            command: [ liveness.sh ]
+          periodSeconds: 30
+          failureThreshold: 120
+        livenessProbe:
+          exec:
+            command: [ liveness.sh ]
+          initialDelaySeconds: 600
+          periodSeconds: 30
+          failureThreshold: 10
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /opt/staging/hooks/90-shutdown-sequence.sh
+  volumeClaimTemplates:
+  - metadata:
+      name: out-dir
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: pingdirectory-gp2
+      resources:
+        requests:
+          storage: 20Gi

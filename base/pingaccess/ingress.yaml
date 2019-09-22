@@ -1,0 +1,62 @@
+# This defines the ingress for the pingaccess runtime service
+
+# NOTE: it will only work if an ingress controller (e.g. nginx) is running on
+# your cluster.
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pingaccess
+  labels:
+    role: pingaccess
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    kubernetes.io/ingress.class: nginx-public
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+spec:
+  rules:
+  - host: pingaccess.anydevops.com
+    http:
+      paths:
+      # This rule gives external access to the pingaccess runtime service
+      - path: /
+        backend:
+          serviceName: pingaccess
+          servicePort: 443
+
+---
+
+# This defines the ingress for the pingaccess admin service
+
+# NOTE: it will only work if an ingress controller (e.g. nginx) is running on
+# your cluster.
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pingaccess-admin
+  labels:
+    role: pingaccess
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /console
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    kubernetes.io/ingress.class: nginx-public
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+spec:
+  # TODO: disallow 80/http
+  # tls:
+  # - hosts:
+  #   - pingaccess-admin.anydevops.com
+  rules:
+  - host: pingaccess-admin.anydevops.com
+    http:
+      paths:
+      # This rule gives internal access to the pingaccess admin services.
+      - path: /
+        backend:
+          serviceName: pingaccess-admin
+          servicePort: 9000
+      # - path: /pa-admin-api
+      #   backend:
+      #     serviceName: pingaccess
+      #     servicePort: 443
