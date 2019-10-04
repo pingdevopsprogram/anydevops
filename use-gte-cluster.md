@@ -1,13 +1,25 @@
 ## Get CLIs
-  1. awscli
+  1. **awscli** - The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services.
     
       ```
       brew install python3
       pip3 install awscli --upgrade --user
       ```
+      Verify the install was successful by running the following command:
+      ```
+      aws help
+      ```
 
-  2. kubectl:
-https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos
+  2. **kubectl** - The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources, and view logs.
+
+      Installation Document [Link](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos)
+
+      On Mac:
+      ```
+      brew install kubectl
+      ```
+
+      On Linux:
       ```
       curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
 
@@ -16,16 +28,19 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos
       sudo mv ./kubectl /usr/local/bin/kubectl
 
       KUBECONFIG="$HOME/.kube/config"
-
+      ```
+      Verify the install was successful by running the following command:
+      ```
       kubectl version
       ```
       > make sure the file at `$HOME/.kube/config` is valid, you may have to delete and recreate it. 
   
-  3. kubectx: 
+  3. **kubectx** - a tool to switch between Kubernetes contexts
+
+      A Kubernetes context is a group of access parameters. Each context contains a Kubernetes cluster, a user, and a namespace. The current context is the cluster that is currently the default for kubectl
       ```
       brew install kubectx
       ```
-      > i think this is missing one word.
 
 ## Configure environment
 1. Request AWS key/secret + namespace from EKS Admin
