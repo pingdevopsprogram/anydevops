@@ -12,7 +12,7 @@ kubectl get -n kube-system configmap/aws-auth -o yaml | awk "/mapUsers: \|/{prin
 kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-patch.yml)"
 
 #create namespace + rbac
-kubectl create namespace ${MKUSR}
+kubectl create namespace ping-cloud-${MKUSR}
 
 envsubst < create-user-namespace-access.yaml.subst > ${MKUSR}-access.yaml
 
