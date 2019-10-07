@@ -1,13 +1,35 @@
 ## Get CLIs
+<<<<<<< HEAD
   1. awscli
+=======
+  1. **awscli** - The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services.
+>>>>>>> 70f0ed0988653ea255c571f2578719bcabfa3810
     
       ```
       brew install python3
       pip3 install awscli --upgrade --user
       ```
+<<<<<<< HEAD
 
   2. kubectl:
 https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos
+=======
+      Verify the install was successful by running the following command:
+      ```
+      aws help
+      ```
+
+  2. **kubectl** - The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources, and view logs.
+
+      Installation Document [Link](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos)
+
+      On Mac:
+      ```
+      brew install kubectl
+      ```
+
+      On Linux:
+>>>>>>> 70f0ed0988653ea255c571f2578719bcabfa3810
       ```
       curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
 
@@ -16,16 +38,31 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos
       sudo mv ./kubectl /usr/local/bin/kubectl
 
       KUBECONFIG="$HOME/.kube/config"
+<<<<<<< HEAD
 
+=======
+      ```
+      Verify the install was successful by running the following command:
+      ```
+>>>>>>> 70f0ed0988653ea255c571f2578719bcabfa3810
       kubectl version
       ```
       > make sure the file at `$HOME/.kube/config` is valid, you may have to delete and recreate it. 
   
+<<<<<<< HEAD
   3. kubectx: 
       ```
       brew install kubectx
       ```
       > i think this is missing one word.
+=======
+  3. **kubectx** - a tool to switch between Kubernetes contexts
+
+      A Kubernetes context is a group of access parameters. Each context contains a Kubernetes cluster, a user, and a namespace. The current context is the cluster that is currently the default for kubectl
+      ```
+      brew install kubectx
+      ```
+>>>>>>> 70f0ed0988653ea255c571f2578719bcabfa3810
 
 ## Configure environment
 1. Request AWS key/secret + namespace from EKS Admin
