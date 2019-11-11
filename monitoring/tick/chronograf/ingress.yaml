@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx-private
+  labels:
+    app: tick
+    role: chronograf
+  name: chronograf-ingress
+  namespace: tick
+spec:
+  rules:
+  - host: chronograf.anydevops.com
+    http:
+      paths:
+      - backend:
+          serviceName: chronograf
+          servicePort: 80
+        path: /
+  # tls:
+  # - hosts:
+  #   - chronograf.anydevops.com
+  #   secretName: tls-secret-anydevops

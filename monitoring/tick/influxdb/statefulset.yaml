@@ -1,0 +1,92 @@
+# Section: influxdb service
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: tick
+  name: influxdb
+  labels:
+    component: influxdb
+    app: influxdb
+spec:
+  ports:
+  - port: 8086
+    name: server
+  selector:
+    component: influxdb
+---
+# Section: influxdb statefulset
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: tick
+  name: influxdb
+  labels:
+    component: influxdb
+    app: influxdb
+spec:
+  serviceName: influxdb
+  selector:
+    matchLabels:
+      component: influxdb
+  replicas: 1
+  template:
+    metadata:
+      name: influxdb
+      labels:
+        component: influxdb
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb:alpine
+        # lifecycle:
+        #   postStart:
+        #     exec:
+        #       command:
+        #         - /bin/sh
+        #         - "-c"
+        #         - until curl -s http://localhost:8086/ping; do sleep 1; done; influx -execute "CREATE DATABASE \"${MONITOR_DATABASE}\" WITH DURATION 30d NAME ${MONITOR_RP}"
+        env:
+          - name: INFLUXDB_IFQL_ENABLED
+            value: "true"
+          - name: INFLUXDB_LOGGING_LEVEL
+            value: "error"
+          - name: INFLUXDB_HTTP_LOG_ENABLED
+            value: "true"
+          - name: MONITOR_RP
+            value: "monthly"
+          - name: MONITOR_DATABASE
+            value: "tick"
+        envFrom:
+        - secretRef:
+            name: influxdb-creds
+        ports:
+          - containerPort: 8086
+            name: server
+          - containerPort: 8082
+            name: ifql
+        resources:
+          limits:
+            cpu: 1500m
+            memory: 2Gi
+          requests:
+            cpu: 1500m
+            memory: 1536Mi
+        volumeMounts:
+          - name: influx-data
+            mountPath: /var/lib/influxdb
+        #TODO: add init-iql? add telegraf config?
+  volumeClaimTemplates:
+  - metadata:
+      labels:
+        component: influxdb
+        app: influxdb
+      namespace: tick
+      name: influx-data
+    spec:
+      accessModes:
+        - "ReadWriteOnce"
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: influxdb-gp2
