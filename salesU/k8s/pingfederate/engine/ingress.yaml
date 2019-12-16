@@ -1,0 +1,22 @@
+
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   annotations:
+#     kubernetes.io/ingress.class: nginx-elb
+#     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+#     nginx.ingress.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-west-1:476771282763:certificate/f37da686-8a24-47a1-b9e7-9480df912fb7" 
+#   labels:
+#     app: pf-cluster
+#     tier: console
+#   name: pingfederate-admin-ingress
+# spec:
+#   rules:
+#   # TODo: move to - host: pingfederate-admin-${PING_IDENTITY_K8S_NAMESPACE}.ping-devops.com
+#   - host: pingfederate-admin-ping-cloud-devops-eks-mdeller.ping-devops.com
+#     http:
+#       paths:
+#       - backend:
+#           serviceName: pf-console-lb
+#           servicePort: 9999
+#         path: /

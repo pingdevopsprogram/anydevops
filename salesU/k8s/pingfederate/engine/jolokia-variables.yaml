@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  SERVER_PROFILE_MONITOR_PATH: monitoring/pingfederate/jolokia-simple
+  SERVER_PROFILE_MONITOR_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+  SERVER_PROFILE_PARENT: MONITOR
+kind: ConfigMap
+metadata:
+  name: jolokia-variables

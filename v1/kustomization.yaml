@@ -1,0 +1,29 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namespace: anydevops
+
+commonLabels:
+  app: anydevops
+
+resources:
+- https://github.com/pingidentity/ping-cloud-base/test/ping-cloud
+# - tls-secret_anydevops.yaml
+
+patchesStrategicMerge:
+  - tls-secret-patch.yaml
+
+patches:
+  - target:
+      kind: Namespace
+      name: ping-cloud
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: anydevops
+
+#TODO: make sure parameters for ENVIRONMENT and TENANT_DOMAIN are passed.
+# will start with environment being "dev" and TENANT_DOMAIN being anydevops.com
+#TODO: figure how to use tls-secret. pass as envsusbt or delete old tls-secret. 
+# looks like will want to use patch to delete old tls-secret. because can't have 
+#TODO: overwrite the ingresses to use nginx ELB. 

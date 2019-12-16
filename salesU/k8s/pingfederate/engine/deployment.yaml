@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingfederate
+  labels:
+    app: pingfederate
+    tier: engine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingfederate
+      tier: engine
+  template:
+    metadata:
+      labels:
+        app: pingfederate
+        tier: engine
+        version: "0.1"
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: engine-variables
+        - secretRef:
+            name: devops-secret
+            optional: true
+        - configMapRef:
+            name: jolokia-variables
+        name: engine-node
+        image: gcr.io/ping-identity/pingfederate:10.0.0-Beta-centos-edge
+        ports:
+        - containerPort: 9031
+        resources:
+          requests:
+            memory: 1.5Gi
+            cpu: "1"
+          limits:
+            memory: 1.5Gi
+            cpu: "1"
+      - env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        envFrom:
+        - configMapRef:
+            name: telegraf-variables
+        image: docker.io/library/telegraf:1.9.5-alpine
+        name: telegraf
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+        volumeMounts:
+        - mountPath: /etc/telegraf
+          name: telegraf-conf
+      volumes:
+      - configMap:
+          name: telegraf-conf
+        name: telegraf-conf

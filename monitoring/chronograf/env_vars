@@ -1,0 +1,4 @@
+BASEPATH=/dashboard
+INFLUXDB_URL=http://influxdb:8086
+PUBLIC_URL=http://localhost:8888
+RESOURCES_PATH=/usr/share/chronograf/resources

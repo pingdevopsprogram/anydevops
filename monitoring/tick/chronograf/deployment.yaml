@@ -3,13 +3,11 @@ kind: Deployment
 metadata:
   name: chronograf
   labels:
-    app: tick
     role: chronograf
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tick
       role: chronograf
   template:
     metadata:

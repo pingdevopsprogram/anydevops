@@ -1,0 +1,126 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: influxdb
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - env:
+        - name: INFLUXDB_DB
+          value: jmeter
+        envFrom:
+        - secretRef:
+            name: influxdb-creds
+        image: influxdb:alpine
+        imagePullPolicy: IfNotPresent
+        name: influxdb
+        ports:
+        - containerPort: 8086
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 1500m
+            memory: 2Gi
+          requests:
+            cpu: 1500m
+            memory: 1536Mi
+        volumeMounts:
+        - mountPath: /var/lib/influxdb
+          name: var-lib-influxdb
+      volumes:
+      - name: var-lib-influxdb
+        persistentVolumeClaim:
+          claimName: influxdb
+---
+# tick/influxdb/statefulset.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: tick
+  name: influxdb
+data:
+  influxdb.conf: |+
+    [meta]
+      dir = "/var/lib/influxdb/meta"
+      retention-autocreate = false
+    [data]
+      dir = "/var/lib/influxdb/data"
+      engine = "tsm1"
+      wal-dir = "/var/lib/influxdb/wal"
+  init.iql: |+
+    CREATE DATABASE "telegraf" WITH DURATION 90d REPLICATION 1 SHARD DURATION 1h NAME "rp_90d"
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: tick
+  name: influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  serviceName: influxdb
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: ssd-ext4
+      resources:
+        requests:
+          storage: 250Gi
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      volumes:
+      - name: config
+        configMap:
+          name: influxdb
+          items:
+            - key: influxdb.conf
+              path: influxdb.conf
+      - name: init-iql
+        configMap:
+          name: influxdb
+          items:
+            - key: init.iql
+              path: init.iql
+      containers:
+      - name: influxdb
+        image: influxdb:1.5.2-alpine
+        ports:
+        - name: api
+          containerPort: 8086
+        - name: admin
+          containerPort: 8083
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/influxdb
+        - name: config
+          mountPath: /etc/telegraf
+        - name: init-iql
+          mountPath: /docker-entrypoint-initdb.d
+        env:
+        - name: INFLUXDB_DB
+          value: jmeter
+        envFrom:
+        - secretRef:
+            name: influxdb-creds
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2G
+          limits:
+            cpu: 4000m
+            memory: 3G
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: api
+          initialDelaySeconds: 5
+          timeoutSeconds: 5

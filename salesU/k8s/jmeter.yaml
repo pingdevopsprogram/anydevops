@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jmeter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jmeter
+        company: PingIdentity
+      name: jmeter
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: jmeter-variables
+        args:
+        - --nongui
+        - -t /opt/apache-jmeter/bin/authorization_code.jmx
+        - -JthreadCount=64
+        - -Jduration=300
+        # - -JpfHost=pingfederate
+        - -JapplicationName=jmeter-pod
+        # - -JinfluxHost=influxdb.tick
+        # - --logfile result.jtl
+        image: pingidentity/apache-jmeter:edge
+        imagePullPolicy: Always
+        name: jmeter
+        ports:
+        - containerPort: 1099
+          protocol: TCP
+        - containerPort: 50000
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 2
+            memory: 10.5Gi
+          requests:
+            cpu: 2
+            memory: 10.5Gi

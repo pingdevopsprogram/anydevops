@@ -1,0 +1,14 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+resources:
+- service.yaml
+- ingress.yaml
+- deployment.yaml
+
+commonLabels:
+  role: chronograf
+
+configMapGenerator:
+- name: chronograf-configmap
+  env: env_vars
