@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pingfederate
+  labels:
+    app: pingfederate
+    tier: console
+spec:
+  ports:
+  #NOTE: external port is 443 now
+  - port: 443
+    protocol: TCP
+    targetPort: 9999
+  selector:
+    app: pingfederate
+    tier: console
+  sessionAffinity: None
+  # type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  name: pf-cluster-dns
+  labels:
+    run: pf-cluster
+spec:
+  publishNotReadyAddresses: true
+  clusterIP: None
+  ports:
+    - name: bind-port
+      port: 7600
+      protocol: TCP
+      targetPort: 7600
+  selector:
+     app: pf-cluster
