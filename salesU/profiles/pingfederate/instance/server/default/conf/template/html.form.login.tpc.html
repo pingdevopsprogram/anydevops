@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+#set( $messageKeyPrefix = "html.form.login.template." )
+
+<html lang="en">
+<head>
+</head>
+
+<body>
+
+<form method="POST" action="$url">
+  <input id="username" type="text" name="$name" value="user.0@example.com" />
+  <input id="password" type="password" name="$pass" value="2FederateM0re" />
+  <input type="submit" />
+</form>
+
+#if($authnMessageKey)
+  <p>$templateMessages.getMessage($authnMessageKey)</p>
+#end
+#if($errorMessageKey)
+  <p>$templateMessages.getMessage($messageKeyPrefix, $errorMessageKey)</p>
+#end
+#if($serverError)
+  <p>$serverError</p>
+#end
+
+</body>
+</html>

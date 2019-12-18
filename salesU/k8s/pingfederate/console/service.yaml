@@ -1,19 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pingfederate
+  name: pingfederate-admin
   labels:
-    app: pingfederate
-    tier: console
+    app: pingfederate-admin
+    tier: admin
 spec:
   ports:
   #NOTE: external port is 443 now
-  - port: 443
+  - port: 9999
     protocol: TCP
-    targetPort: 9999
+    # targetPort: 9999
   selector:
-    app: pingfederate
-    tier: console
+    app: pingfederate-admin
+    tier: admin
   sessionAffinity: None
   # type: LoadBalancer
 
