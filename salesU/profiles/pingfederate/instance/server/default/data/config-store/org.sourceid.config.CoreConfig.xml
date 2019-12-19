@@ -10,7 +10,9 @@
      authentication, etc. For each item, the name of the item maps
      to the alias of a private key, and the value of the item is the
      password to that particular key.-->
-    <map name="DsigPrivateKeyPasswords"></map>
+    <map name="DsigPrivateKeyPasswords">
+        <item name="dc2d0o4ow74l33cltdfddlxh7">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiUWVzOVR5eTV5WiIsInZlcnNpb24iOiIxMC4wLjAuOSJ9..L8UQcax4bh7wDJsqRDRTpg.DkDslGjJvhqyNgSRX0TOJiywYaAVgVeeTvUGRl0j6Ac.fH7LhMJCS3jhVihrh1u29g</item>
+    </map>
     <!--DSIG HSM Keystore information: name and password-->
     <item name="DsigHSMKeystoreName">ping-dsig.hsmks</item>
     <item name="DsigHSMKeystorePassword"/>
@@ -20,10 +22,10 @@
      authentication, etc. For each item, the name of the item maps
      to the alias of a private key and the value of the item is the
      password to that particular key-->
-    <map name="DsigHSMPrivateKeyPasswords"></map>
+    <map name="DsigHSMPrivateKeyPasswords"/>
     <!--SSL Keystore information: name and password-->
     <item name="SslKeystoreName">ping-ssl.jks</item>
-    <item name="SslKeystorePassword"/>
+    <item name="SslKeystorePassword">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiUWVzOVR5eTV5WiIsInZlcnNpb24iOiIxMC4wLjAuOSJ9..A77wZC7RePUmACJFFGm40Q.b2FPY4A6x1C94JRkKR2qe43osyu6ZLvDPBqTo2AQLyU.vvNbrcJhjvX8WOfHzh6Ahg</item>
     <!--Do not modify-->
     <item name="SslKeystoreType2">default</item>
     <!--Map of SSL client auth keystore aliases to passwords; the system uses this map
@@ -31,7 +33,7 @@
      authentication, etc. For each item, the name of the item maps
      to the alias of a private key and the value of the item is the
      password to that particular key-->
-    <map name="SslPrivateKeyPasswords"></map>
+    <map name="SslPrivateKeyPasswords"/>
     <!--SSL HSM Keystore information: name and password-->
     <item name="SslHSMKeystoreName">ping-ssl.hsmks</item>
     <item name="SslHSMKeystorePassword"/>
@@ -42,7 +44,7 @@
      authentication, etc. For each item, the name of the item maps
      to the alias of a private key and the value of the item is the
      password to that particular key-->
-    <map name="SslHSMPrivateKeyPasswords"></map>
+    <map name="SslHSMPrivateKeyPasswords"/>
     <!--SSL Server Keystore information: name and password-->
     <item name="SslServerKeystoreName">ping-ssl-server.jks</item>
     <item name="SslServerKeystorePassword">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiUWVzOVR5eTV5WiIsInZlcnNpb24iOiI5LjIuMS4xIn0..Z3J6HwQoBZGWoy6LzKR20g.7NOsImwpupJsLAazXP2TI2c9cSjzBYFXiKOHwig9w9c.vEdsqHYucOvf2CX7sr3MDQ</item>
@@ -66,7 +68,7 @@
          authentication, etc. For each item, the name of the item maps
          to the alias of a private key and the value of the item is the
          password to that particular key-->
-    <map name="SslServerHSMPrivateKeyPasswords"></map>
+    <map name="SslServerHSMPrivateKeyPasswords"/>
     <!--Truststore Keystore information: name and password-->
     <item name="TrustKeystoreName">ping-trust.jks</item>
     <item name="TrustKeystorePassword">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiUWVzOVR5eTV5WiIsInZlcnNpb24iOiI5LjIuMS4xIn0..HEjedfg5sxkJnPTE6mG2ig.CZ9cDjUs8h1Y7eGrBbwMKEjPeiRf0MJY3dqwjrdPwtg.TPCEc0TXmwzXFMhEZ0ngGw</item>
@@ -95,7 +97,7 @@
      authentication, etc. For each item, the name of the item maps
      to the alias of a private key, and the value of the item is the
      password to that particular key.-->
-    <map name="GeneralPrivateKeyPasswords"></map>
+    <map name="GeneralPrivateKeyPasswords"/>
     <!--General HSM keystore information: name and password-->
     <item name="GeneralHSMKeystoreName">ping-general.hsmks</item>
     <item name="GeneralHSMKeystorePassword"/>
@@ -106,5 +108,5 @@
      authentication, etc. For each item, the name of the item maps
      to the alias of a private key, and the value of the item is the
      password to that particular key.-->
-    <map name="GeneralHSMPrivateKeyPasswords"></map>
+    <map name="GeneralHSMPrivateKeyPasswords"/>
 </config>

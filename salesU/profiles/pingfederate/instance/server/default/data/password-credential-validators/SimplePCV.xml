@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PluginConfiguration isInheritExtendedContractAttributes="false" name="SimplePCV" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields/>
+    <urn:AdvancedFields/>
+    <urn:Tables>
+        <urn:Table name="Users">
+            <urn:Row>
+                <urn:Field name="Username">joe</urn:Field>
+                <urn:Field name="Password">z55iwkZmGJDBJTuMhmCga82p0Cwg5bVR8lSSuI1KJUQ.Q4wcUGcZ.2</urn:Field>
+                <urn:Field name="Confirm Password">qs9dyKGNsi9koA4ekgkzaQ5rmwEULjrLZmXzmnlzkSk.l4Lid8T4.2</urn:Field>
+                <urn:Field name="Relax Password Requirements">false</urn:Field>
+            </urn:Row>
+        </urn:Table>
+    </urn:Tables>
+</urn:PluginConfiguration>

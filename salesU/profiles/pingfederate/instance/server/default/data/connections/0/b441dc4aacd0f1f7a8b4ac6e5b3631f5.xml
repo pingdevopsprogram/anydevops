@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:EntityDescriptor entityID="https://anydevops.com" urn:name="https://anydevops.com" ID="droAx8xblmWloCqdXSMMazAd5lz" urn:LogLevel="STANDARD" urn:isActive="true" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2">
+    <md:Extensions>
+        <urn:EntityExtension PFVersion="10.0.0.9" LicenseGroup="">
+            <urn:VirtualIdentity EntityID="ado:sfdc"/>
+            <urn:DefaultVirtualIdentity EntityID="ado:sfdc"/>
+            <urn:DigitialSignatureAliases SigningKeyAlias="dc2d0o4ow74l33cltdfddlxh7" includeX509inXmlSig="false" includeRawKeyInXmlSig="false" SigningAlgorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256">
+                <urn:ActiveVerificationCertAlias>qnp7oz2d9rxm7n4a7b05ddmr0</urn:ActiveVerificationCertAlias>
+            </urn:DigitialSignatureAliases>
+            <urn:Encryption>
+                <urn:EncryptionPolicy EncryptionAlgorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc" KeyTransportAlgorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" EncryptAssertion="false" EncryptSubjectNameID="false" SLOEncryptSubjectNameID="false"/>
+                <urn:DecryptionPolicy AssertionEncrypted="false" SubjectNameIDEncrypted="false" AttributeEncrypted="false" SLOSubjectNameIDEncrypted="false"/>
+            </urn:Encryption>
+            <urn:MetadataUrlId xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <urn:enableAutoMetadataUpdate>false</urn:enableAutoMetadataUpdate>
+            <urn:AdditionalAllowedEntitiesConfiguration>
+                <urn:AllowAdditionalEntities>false</urn:AllowAdditionalEntities>
+                <urn:AllowAllEntities>false</urn:AllowAllEntities>
+                <urn:AdditionalAllowedEntities/>
+            </urn:AdditionalAllowedEntitiesConfiguration>
+        </urn:EntityExtension>
+    </md:Extensions>
+    <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" AuthnRequestsSigned="true" WantAssertionsSigned="true" SignResponseAsRequired="false">
+        <md:Extensions>
+            <urn:RoleExtension ArtifactTimeoutSeconds="60" LastModified="2019-12-18T20:46:47.288Z">
+                <urn:IncomingBindings Artifact="false" POST="true" Redirect="false" SOAP="false"/>
+                <urn:EnabledProfiles IDPInitiatedSSO="true" IDPInitiatedSLO="false" SPInitiatedSSO="true" SPInitiatedSLO="false"/>
+                <urn:SP AssertionValidityAfterMinutes="5" AssertionValidityBeforeMinutes="5" ConnectionTargetType="Standard" EnableCDCDuringSSO="false">
+                    <urn:AdapterToAssertionMapping AbortIfNotFoundInAnyDataSources="false" RestrictVirtualServerIds="false" AdapterInstanceId="SimpleLogInForm">
+                        <urn:DefaultAttributeMapping>
+                            <urn:AttributeMap Name="SAML_SUBJECT" Type="Adapter" Value="username"/>
+                            <urn:TokenAuthorizationIssuanceCriteria/>
+                        </urn:DefaultAttributeMapping>
+                    </urn:AdapterToAssertionMapping>
+                    <urn:NameIdentifierMappingType IncludeAdditionalAttributes="false" IncludeAdditionalTransientAttributes="false"/>
+                </urn:SP>
+            </urn:RoleExtension>
+        </md:Extensions>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+        <md:AssertionConsumerService index="0" Location="https://login.salesforce.com?so=00D6g000002eoBP" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" isDefault="true"/>
+    </md:SPSSODescriptor>
+    <md:RoleDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" xsi:type="urn:PFAvailableCertsRoleDescriptorType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <urn:availableCert>
+            <urn:Base64EncodedCert>MIIErDCCA5SgAwIBAgIOAW8alYDNAAAAACFGTxwwDQYJKoZIhvcNAQELBQAwgZAxKDAmBgNVBAMMH1NlbGZTaWduZWRDZXJ0XzE4RGVjMjAxOV8xOTU2NDIxGDAWBgNVBAsMDzAwRDZnMDAwMDAyZW9CUDEXMBUGA1UECgwOU2FsZXNmb3JjZS5jb20xFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xCzAJBgNVBAgMAkNBMQwwCgYDVQQGEwNVU0EwHhcNMTkxMjE4MTk1NjQzWhcNMjAxMjE4MTIwMDAwWjCBkDEoMCYGA1UEAwwfU2VsZlNpZ25lZENlcnRfMThEZWMyMDE5XzE5NTY0MjEYMBYGA1UECwwPMDBENmcwMDAwMDJlb0JQMRcwFQYDVQQKDA5TYWxlc2ZvcmNlLmNvbTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzELMAkGA1UECAwCQ0ExDDAKBgNVBAYTA1VTQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMEgzFZolCCDLta/hGotGH62F4REqOCN1aALb+J/tF+2ZjY9iLXVPqFlyS+6Vbs40vXALzsJeKLvgZWGaB1aGjwZeOiEn9mO0UjJuYO5NG63dn8hg4Pui6Hc4XGJpgzkkgn8jTFwD9IDc/BT6B+Au0auz5YKQlXR5I9O/WgtWxIznjZhKwF2cMrnSWk4/pBxSlFdJn0R7s9IBKwGTxWmDmZCcs6boyddN3nUfdWnqunEPhBsN/DDBkDPn4hBCQvEUa4CbNX6ITlxHNcwibpa8zbUDg3ETzCa13If/9qnkjsR/cnpAriQ/+0gt9sCL8FoWns5hQPkQgunQmcRHDldBhUCAwEAAaOCAQAwgf0wHQYDVR0OBBYEFDLO1O/pgI+vznn5M4aWsX3tqup0MA8GA1UdEwEB/wQFMAMBAf8wgcoGA1UdIwSBwjCBv4AUMs7U7+mAj6/Oefkzhpaxfe2q6nShgZakgZMwgZAxKDAmBgNVBAMMH1NlbGZTaWduZWRDZXJ0XzE4RGVjMjAxOV8xOTU2NDIxGDAWBgNVBAsMDzAwRDZnMDAwMDAyZW9CUDEXMBUGA1UECgwOU2FsZXNmb3JjZS5jb20xFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xCzAJBgNVBAgMAkNBMQwwCgYDVQQGEwNVU0GCDgFvGpWAzQAAAAAhRk8cMA0GCSqGSIb3DQEBCwUAA4IBAQCP7XWiotJPhHBP+ZSE0ucflREjlT5JKtgTHxFaWxd6Rzy5s00o5BkbQdKsruN48ag2mFMKy++hxWLUQNMsOVHkK9XzHeTLX+xuPMYp40fLoSOg7gVzFFDnR75Pu8RZjA+zH3JnvXPGs7Dj+TrzX1af4onZE3F7VQbYNUBs3/tl65AhdEM9yn9L53UCDmI0uJ2StuKmwnoG215UeNas8ioRhHAe1DHF280mdSCdKQT25JvyKQCt/0DPus3/4veamxKOSB5jJBAeVohXZko9AjB7jCv4+QKIKEcozLhBQpbuNsXXtrSSioLieKhvJRh6KqLuHAi4OeJPIWh/s6Ec33GY</urn:Base64EncodedCert>
+            <urn:alias>qnp7oz2d9rxm7n4a7b05ddmr0</urn:alias>
+        </urn:availableCert>
+    </md:RoleDescriptor>
+    <md:ContactPerson contactType="administrative"/>
+</md:EntityDescriptor>
