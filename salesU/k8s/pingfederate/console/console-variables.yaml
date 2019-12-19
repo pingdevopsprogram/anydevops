@@ -4,6 +4,8 @@ data:
   PF_DNS_PING_CLUSTER: _bind-port._tcp.pf-cluster-dns
   PF_DNS_PING_NAMESPACE: anydevops
   PF_DNS_PING_RECORDTYPE: SRV
+  # SERVER_PROFILE_PATH: server-profiles/pingfederate
+  # SERVER_PROFILE_URL: https://github.com/mdeller-ping/tpc-poc.git
   SERVER_PROFILE_PATH: salesU/profiles/pingfederate
   SERVER_PROFILE_URL: https://github.com/ping-devops-program/anydevops
 kind: ConfigMap

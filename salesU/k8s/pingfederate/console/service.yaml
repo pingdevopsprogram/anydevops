@@ -25,7 +25,8 @@ metadata:
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
   name: pf-cluster-dns
   labels:
-    run: pf-cluster
+    app: pingfederate-admin
+    tier: admin
 spec:
   publishNotReadyAddresses: true
   clusterIP: None
@@ -35,4 +36,5 @@ spec:
       protocol: TCP
       targetPort: 7600
   selector:
-     app: pf-cluster
+     app: pingfederate-admin
+     tier: admin

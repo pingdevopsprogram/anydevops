@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: console-node
-        image: gcr.io/ping-identity/pingfederate:10.0.0-Beta-alpine-edge
+        image: gcr.io/ping-identity/pingfederate:10.0.0-Beta-centos-edge
         ports:
         - containerPort: 9999
         resources:

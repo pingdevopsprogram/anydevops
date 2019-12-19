@@ -6,6 +6,8 @@ data:
   PF_DNS_PING_RECORDTYPE: SRV
   SERVER_PROFILE_PATH: salesU/profiles/pingfederate
   SERVER_PROFILE_URL: https://github.com/ping-devops-program/anydevops
+  # SERVER_PROFILE_PATH: server-profiles/pingfederate
+  # SERVER_PROFILE_URL: https://github.com/mdeller-ping/tpc-poc.git
 
 kind: ConfigMap
 metadata:

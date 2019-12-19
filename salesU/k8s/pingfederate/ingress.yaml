@@ -39,6 +39,10 @@ spec:
           serviceName: pingfederate-admin
           servicePort: 9999
         path: /pingfederate
+      - backend:
+          serviceName: pingfederate-admin
+          servicePort: 9999
+        path: /pf-admin-api
   tls:
   - hosts:
     - pingfederate-admin.anydevops.com
