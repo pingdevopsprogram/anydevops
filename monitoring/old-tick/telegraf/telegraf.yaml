@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: telegraf
-  namespace: tick
+  namespace: monitoring
   labels:
     k8s-app: telegraf
 data:

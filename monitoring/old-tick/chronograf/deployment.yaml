@@ -29,7 +29,7 @@ spec:
           value: "error"
         envFrom:
         # TODO:  will need to create secret for influx creds. 
-        - configMapRef:
+        - secretRef:
             name: influxdb-creds
         # TODO: change name to chronograf-configmap
         ports:
@@ -53,5 +53,5 @@ spec:
           claimName: chronograf
       - name: config
         configMap:
-          name: chronograf-variables
+          name: chronograf
 

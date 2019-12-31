@@ -1,0 +1,102 @@
+# Section: influxdb service
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: tick
+  name: influxdb
+  # annotations:
+  #   external-dns.alpha.kubernetes.io/hostname: influxdb.anydevops.com
+  #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+  #   service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-2:574076504146:certificate/31fdd86d-291d-40ea-abad-2117cfde02d0
+  labels:
+    component: influxdb
+    app: influxdb
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8086
+    name: server
+  - port: 8086
+    name: internal
+  selector:
+    component: influxdb
+  # LB didn't work  
+  # type: LoadBalancer
+---
+# Section: influxdb statefulset
+# from https://gist.github.com/fntlnz/31b3acafbdb26607d3d3733d880f1bce
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: tick
+  name: influxdb
+  labels:
+    component: influxdb
+    app: influxdb
+spec:
+  serviceName: influxdb
+  selector:
+    matchLabels:
+      component: influxdb
+  replicas: 1
+  template:
+    metadata:
+      name: influxdb
+      labels:
+        component: influxdb
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb:alpine
+        # lifecycle:
+        #   postStart:
+        #     exec:
+        #       command:
+        #         - /bin/sh
+        #         - "-c"
+        #         - until curl -s http://localhost:8086/ping; do sleep 1; done; influx -execute "CREATE DATABASE \"${MONITOR_DATABASE}\" WITH DURATION 7d NAME ${MONITOR_RP}"
+        env:
+          - name: INFLUXDB_IFQL_ENABLED
+            value: "true"
+          - name: INFLUXDB_LOGGING_LEVEL
+            value: "error"
+          - name: INFLUXDB_HTTP_LOG_ENABLED
+            value: "true"
+          - name: MONITOR_RP
+            value: "weekly"
+          - name: MONITOR_DATABASE
+            value: "tick"
+        envFrom:
+        - secretRef:
+            name: influxdb-creds
+        ports:
+          - containerPort: 8086
+            name: server
+          - containerPort: 8082
+            name: ifql
+        resources:
+          limits:
+            cpu: 3
+            memory: 5Gi
+          requests:
+            cpu: 3
+            memory: 5Gi
+        volumeMounts:
+          - name: influx-data
+            mountPath: /var/lib/influxdb
+        #TODO: add init-iql? add telegraf config?
+  volumeClaimTemplates:
+  - metadata:
+      labels:
+        component: influxdb
+        app: influxdb
+      namespace: tick
+      name: influx-data
+    spec:
+      accessModes:
+        - "ReadWriteOnce"
+      resources:
+        requests:
+          storage: 300Gi
+      storageClassName: influxdb-gp2

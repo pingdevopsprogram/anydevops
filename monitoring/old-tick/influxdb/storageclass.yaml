@@ -2,8 +2,8 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   labels:
-    app: influxdb
     component: influxdb
+    app: influxdb
   name: influxdb-gp2
 mountOptions:
 - discard
@@ -11,5 +11,3 @@ parameters:
   fsType: ext4
   type: gp2
 provisioner: kubernetes.io/aws-ebs
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
