@@ -1,13 +1,12 @@
 apiVersion: v1
 data:
   OPERATIONAL_MODE: CLUSTERED_CONSOLE
-  PF_DNS_PING_CLUSTER: _bind-port._tcp.pf-cluster-dns
+  PF_DNS_PING_CLUSTER: pf-cluster-dns
   PF_DNS_PING_NAMESPACE: anydevops
   PF_DNS_PING_RECORDTYPE: SRV
-  # SERVER_PROFILE_PATH: server-profiles/pingfederate
-  # SERVER_PROFILE_URL: https://github.com/mdeller-ping/tpc-poc.git
   SERVER_PROFILE_PATH: salesU/profiles/pingfederate
   SERVER_PROFILE_URL: https://github.com/ping-devops-program/anydevops
+  PING_IDENTITY_ACCEPT_EULA: "YES"
 kind: ConfigMap
 metadata:
   name: console-variables

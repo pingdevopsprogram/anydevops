@@ -6,11 +6,16 @@ metadata:
     app: pingfederate
     tier: engine
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: pingfederate
       tier: engine
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -27,10 +32,29 @@ spec:
             optional: true
         - configMapRef:
             name: jolokia-variables
+        env:
+          #this is what we will update with flux. new versions will be tags!
+          - name: SERVER_PROFILE_BRANCH
+            value: v2
         name: engine-node
-        image: gcr.io/ping-identity/pingfederate:10.0.0-Beta-centos-edge
+        image: gcr.io/ping-identity/pingfederate:10.0.0-centos-edge-arno-update-10.0.0-b9851707
         ports:
-        - containerPort: 9031
+        - name: runtime
+          containerPort: 9031
+        readinessProbe:
+          httpGet:
+            path: /pf/heartbeat.ping
+            port: 9031
+            scheme: HTTPS
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /pf/heartbeat.ping
+            port: 9031
+            scheme: HTTPS
+          periodSeconds: 1
+          initialDelaySeconds: 100
+          failureThreshold: 1
         resources:
           requests:
             memory: 1.5Gi
@@ -38,7 +62,10 @@ spec:
           limits:
             memory: 1.5Gi
             cpu: "1"
-      - env:
+      # telegraf for monitoring PF engine jmx.       
+      - name: telegraf
+        image: docker.io/library/telegraf:1.9.5-alpine
+        env:
         - name: HOSTNAME
           valueFrom:
             fieldRef:
@@ -46,8 +73,6 @@ spec:
         envFrom:
         - configMapRef:
             name: telegraf-variables
-        image: docker.io/library/telegraf:1.9.5-alpine
-        name: telegraf
         resources:
           limits:
             memory: 500Mi
