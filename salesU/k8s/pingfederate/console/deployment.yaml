@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: console-node
-        image: gcr.io/ping-identity/pingfederate:10.0.0-centos-edge-arno-update-10.0.0-b9851707
+        image: pingidentity/pingfederate:10.0.0-centos-edge
         ports:
         - containerPort: 9999
         - containerPort: 7600
@@ -37,7 +37,7 @@ spec:
               name: devops-secret
               optional: true
         #only used for testing pulling configs, admin will be on master/edge only
-        env:
-          #this is what we will update with flux. new versions will be tags!
-          - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
-            value: v1
+        # env:
+        #   #this is what we will update with flux. new versions will be tags!
+        #   - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
+        #     value: v1

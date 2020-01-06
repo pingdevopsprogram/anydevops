@@ -23,7 +23,7 @@ kind: Service
 metadata:
   annotations:
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
-  name: pf-cluster-dns
+  name: pf-cluster
   labels:
     app: pingfederate-admin
     tier: admin

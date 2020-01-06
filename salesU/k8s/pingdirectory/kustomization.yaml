@@ -1,0 +1,8 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+resources:
+- https://github.com/pingidentity/pingidentity-devops-getting-started/20-kubernetes/02-fullstack
+
+patchesStrategicMerge:
+- deletes.yaml

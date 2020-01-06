@@ -37,7 +37,7 @@ spec:
           - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
             value: v1
         name: engine-node
-        image: gcr.io/ping-identity/pingfederate:10.0.0-centos-edge-arno-update-10.0.0-b9851707
+        image: pingidentity/pingfederate:10.0.0-centos-edge
         ports:
         - name: runtime
           containerPort: 9031
