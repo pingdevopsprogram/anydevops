@@ -34,8 +34,8 @@ spec:
             name: jolokia-variables
         env:
           #this is what we will update with flux. new versions will be tags!
-          - name: SERVER_PROFILE_BRANCH
-            value: v2
+          - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
+            value: v1
         name: engine-node
         image: gcr.io/ping-identity/pingfederate:10.0.0-centos-edge-arno-update-10.0.0-b9851707
         ports:

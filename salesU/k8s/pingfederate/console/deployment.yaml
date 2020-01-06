@@ -39,5 +39,5 @@ spec:
         #only used for testing pulling configs, admin will be on master/edge only
         env:
           #this is what we will update with flux. new versions will be tags!
-          - name: SERVER_PROFILE_BRANCH
-            value: v2
+          - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
+            value: v1
