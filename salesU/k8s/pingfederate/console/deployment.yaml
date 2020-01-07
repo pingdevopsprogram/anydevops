@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: console-node
-        image: pingidentity/pingfederate:10.0.0-centos-edge
+        image: pingidentity/pingfederate:10.0.0-alpine-edge
         ports:
         - containerPort: 9999
         - containerPort: 7600
