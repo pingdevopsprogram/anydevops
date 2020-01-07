@@ -15,7 +15,7 @@ data:
 
   # cluster info
   OPERATIONAL_MODE: CLUSTERED_CONSOLE
-  DNS_QUERY_LOCATION: pf-cluster.anydevops.svc.cluster.local
+  DNS_QUERY_LOCATION: _bind-port._tcp.pf-cluster.anydevops.svc.cluster.local
   # DNS_QUERY_LOCATION: _bind-port._tcp.pf-cluster.anydevops.svc.cluster.local
   DNS_RECORD_TYPE: SRV
   CLUSTER_NAME: anydevops
@@ -27,9 +27,9 @@ data:
   SERVER_PROFILE_PARENT: BASELINE
   SERVER_PROFILE_BASELINE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
   SERVER_PROFILE_BASELINE_PATH: baseline/pingfederate
-  # SERVER_PROFILE_BASELINE_PARENT: ANYDEVOPS
-  # SERVER_PROFILE_ANYDEVOPS_URL: https://github.com/ping-devops-program/anydevops
-  # SERVER_PROFILE_ANYDEVOPS_PATH: salesU/profiles/pingfederate
+  SERVER_PROFILE_BASELINE_PARENT: ANYDEVOPS
+  SERVER_PROFILE_ANYDEVOPS_URL: https://github.com/ping-devops-program/anydevops
+  SERVER_PROFILE_ANYDEVOPS_PATH: salesU/profiles/pingfederate
 kind: ConfigMap
 metadata:
   name: console-variables

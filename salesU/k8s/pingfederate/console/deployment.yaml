@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: pingfederate-admin
   labels:
-    app: pingfederate-admin
+    app: pingfederate
     tier: admin
 spec:
   replicas: 1
   selector:
       matchLabels:
-        app: pingfederate-admin
+        app: pingfederate
         tier: admin
   template:
     metadata:
       labels:
-        app: pingfederate-admin
+        app: pingfederate
         tier: admin
     spec:
       containers:
@@ -37,7 +37,7 @@ spec:
               name: devops-secret
               optional: true
         #only used for testing pulling configs, admin will be on master/edge only
-        # env:
-        #   #this is what we will update with flux. new versions will be tags!
-        #   - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
-        #     value: v1
+        env:
+          #this is what we will update with flux. new versions will be tags!
+          - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
+            value: v1

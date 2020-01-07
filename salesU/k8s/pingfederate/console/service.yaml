@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: pingfederate-admin
   labels:
-    app: pingfederate-admin
+    app: pingfederate
     tier: admin
 spec:
   ports:
@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     # targetPort: 9999
   selector:
-    app: pingfederate-admin
+    app: pingfederate
     tier: admin
   sessionAffinity: None
   # type: LoadBalancer
@@ -25,8 +25,8 @@ metadata:
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
   name: pf-cluster
   labels:
-    app: pingfederate-admin
-    tier: admin
+    app: pingfederate
+    # tier: admin
 spec:
   publishNotReadyAddresses: true
   clusterIP: None
@@ -36,5 +36,5 @@ spec:
       protocol: TCP
       targetPort: 7600
   selector:
-     app: pingfederate-admin
-     tier: admin
+     app: pingfederate
+    #  tier: admin

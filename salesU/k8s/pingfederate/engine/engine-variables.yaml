@@ -15,7 +15,7 @@ data:
 
   # cluster info
   OPERATIONAL_MODE: CLUSTERED_ENGINE
-  DNS_QUERY_LOCATION: pf-cluster.anydevops.svc.cluster.local
+  DNS_QUERY_LOCATION: _bind-port._tcp.pf-cluster.anydevops.svc.cluster.local
   DNS_RECORD_TYPE: SRV
   CLUSTER_NAME: anydevops
   CLUSTER_BIND_ADDRESS: NON_LOOPBACK
