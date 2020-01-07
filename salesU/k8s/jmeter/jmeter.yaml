@@ -20,7 +20,7 @@ spec:
         - -t /opt/apache-jmeter/bin/authorization_code.jmx
         - -JthreadCount=1
         - -Jduration=360
-        # - -JpfHost=pingfederate
+        - -JpfHost=pingfederate
         - -JapplicationName=jmeter-pod
         # - -JinfluxHost=influxdb.tick
         # - --logfile result.jtl

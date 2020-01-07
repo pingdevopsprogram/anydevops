@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   GIT_URL: https://github.com/ping-devops-program/anydevops
-  GIT_PATH: salesU/profiles/jmeter/opt/apache-jmeter/bin
+  GIT_PATH: salesU/profiles/jmeter
   # GIT_PATH:
 kind: ConfigMap
 metadata:
