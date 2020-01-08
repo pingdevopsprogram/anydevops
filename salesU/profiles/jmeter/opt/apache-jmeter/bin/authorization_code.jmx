@@ -17,12 +17,12 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__P(threadCount,10)}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(threadCount,5)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1565902074000</longProp>
         <longProp name="ThreadGroup.end_time">1565902074000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">${__P(duration,10)}</stringProp>
+        <stringProp name="ThreadGroup.duration">${__P(duration,100)}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
@@ -30,9 +30,9 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="user" elementType="Argument">
               <stringProp name="Argument.name">user</stringProp>
-              <stringProp name="Argument.value">user.0</stringProp>
+              <stringProp name="Argument.value">autogen.user.${__Random(1,9999)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
-              <stringProp name="Argument.desc">${__Random(10000000,10999999)}@ping-poc-intuit.com</stringProp>
+              <stringProp name="Argument.desc">autogen.user.${__Random(1000,1799)}@ping-poc-intuit.com</stringProp>
             </elementProp>
             <elementProp name="password" elementType="Argument">
               <stringProp name="Argument.name">password</stringProp>

@@ -1,94 +1,94 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    role: pingdataconsole
-  name: pingdataconsole
-$patch: delete
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     role: pingdataconsole
+#   name: pingdataconsole
+# $patch: delete
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    role: pingdataconsole
-  name: pingdataconsole
-$patch: delete
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     role: pingdataconsole
+#   name: pingdataconsole
+# $patch: delete
 
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    role: pingfederate
-  name: pingfederate
-$patch: delete
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     role: pingfederate
+#   name: pingfederate
+# $patch: delete
 
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    role: pingdatagovernance
-  name: pingdatagovernance
-$patch: delete
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    role: pingaccess
-  name: pingaccess
-$patch: delete
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    role: pingfederate
-  name: pingfederate
-$patch: delete
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    role: pingdatagovernance
-  name: pingdatagovernance
-$patch: delete
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    role: pingaccess
-  name: pingaccess
-$patch: delete
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     role: pingdatagovernance
+#   name: pingdatagovernance
+# $patch: delete
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     role: pingaccess
+#   name: pingaccess
+# $patch: delete
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     role: pingfederate
+#   name: pingfederate
+# $patch: delete
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     role: pingdatagovernance
+#   name: pingdatagovernance
+# $patch: delete
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     role: pingaccess
+#   name: pingaccess
+# $patch: delete
 
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  annotations: {}
-  labels:
-    role: pingfederate
-  name: pingfederate-environment-variables
-$patch: delete
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  annotations: {}
-  labels:
-    role: pingdatagovernance
-  name: pingdatagovernance-environment-variables
-$patch: delete
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  annotations: {}
-  labels:
-    role: pingaccess
-  name: pingaccess-environment-variables
-$patch: delete
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   annotations: {}
+#   labels:
+#     role: pingfederate
+#   name: pingfederate-environment-variables
+# $patch: delete
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   annotations: {}
+#   labels:
+#     role: pingdatagovernance
+#   name: pingdatagovernance-environment-variables
+# $patch: delete
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   annotations: {}
+#   labels:
+#     role: pingaccess
+#   name: pingaccess-environment-variables
+# $patch: delete

@@ -23,6 +23,10 @@ spec:
         tier: engine
         version: "0.1"
     spec:
+      initContainers:
+      - name: init
+        image: curlimages/curl:latest
+        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingfederate-admin:9999/pingfederate/app ; do echo waiting for admin ; sleep 2 ; done']
       containers:
       - envFrom:
         - configMapRef:
@@ -75,6 +79,7 @@ spec:
             name: telegraf-variables
         resources:
           limits:
+            cpu: 500m
             memory: 500Mi
           requests:
             cpu: 500m
@@ -86,3 +91,4 @@ spec:
       - configMap:
           name: telegraf-conf
         name: telegraf-conf
+      

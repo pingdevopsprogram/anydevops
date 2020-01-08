@@ -4,6 +4,7 @@ data:
   SERVER_PROFILE_PATH: baseline/pingdirectory
   SERVER_PROFILE_BRANCH: anydevops
   SERVER_PROFILE_URL: https://www.github.com/pingidentity/pingidentity-server-profiles.git
+  MAKELDIF_USERS: "10000"
 kind: ConfigMap
 metadata:
   annotations: {}
