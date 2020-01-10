@@ -174,8 +174,8 @@ config:
     cache_snapshot_memory_size: 26214400
     cache_snapshot_write_cold_duration: 10m0s
     compact_full_write_cold_duration: 4h0m0s
-    max_series_per_database: 1000000
-    max_values_per_tag: 100000
+    max_series_per_database: 1000
+    max_values_per_tag: 1000
     index_version: inmem
     trace_logging_enabled: false
   coordinator:

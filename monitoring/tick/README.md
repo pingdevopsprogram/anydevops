@@ -10,10 +10,15 @@ This folder is here to be used to deploy the TICK stack:
 
 ## Pre-reqs. 
 
+- Certain cluster tools are necessary. these can be found via: https://github.com/pingidentity/ping-cloud-base/tree/master/k8s-configs/cluster-tools: 
+  - nginx ingress controller (class: nginx-public)
+  - externalDNS
+
 - helm - don't need tiller, just latest version of helm. 
 ```
 brew install helm
 ```
+- a namespace called `tick`
 
 ## Start Deploying
 
@@ -27,9 +32,11 @@ kubectl apply -f influxdb/storageclass.yaml
 helm install influx -f influxdb/values.yaml stable/influxdb 
 ```
 
-3. deploy chronograf. This command will deploy: 
+3. deploy chronograf. 
+  - before deploying, you **MUST** change the host on the ingress: chronograf.anydevops.com. Suggestion, add a prefix to the subdomain!
+This command will deploy: 
 - chronograf - deployment
-- ingress `chronograf.anydevops.com.`
+- ingress `chronograf.anydevops.com`
 - create a tls cert for anydevops.com
 - create a pvc
 ```
@@ -55,9 +62,9 @@ helm uninstall influx
 ```
 kubectl get pvc
 ##find the influxdb and chronograf ones, delete them. 
-kubectl delete pvc <influx-influxdb-data-influx-influxdb-0> <var-lib-chronograf> <chronograf>
+kubectl delete pvc influx-influxdb-data-influx-influxdb-0 var-lib-chronograf chronograf
 
 ## Then delete the corresponding PV and delete it. 
-kubectl get pv
+kubectl get pv | grep influx
 k delete pv <pvc-someId>
 ```

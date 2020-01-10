@@ -5,7 +5,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   namespace: tick
-  name: var-lib-chronograf
+  name: chronograf
   labels:
     app: chronograf
     component: chronograf
