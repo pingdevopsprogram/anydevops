@@ -23,7 +23,7 @@ spec:
         - -JpfHost=pingfederate
         - -JapplicationName=jmeter-pod
         # - -JinfluxHost=influxdb.tick
-        # - --logfile result.jtl
+        # - --logfile result.txt
         image: pingidentity/apache-jmeter:edge
         imagePullPolicy: Always
         name: jmeter

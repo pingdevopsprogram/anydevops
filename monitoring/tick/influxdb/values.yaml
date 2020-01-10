@@ -220,7 +220,7 @@ config:
     https_enabled: false
     https_certificate: /etc/ssl/influxdb.pem
     https_private_key: ""
-    max_row_limit: 10000
+    max_row_limit: 1000
     max_connection_limit: 0
     shared_secret: "beetlejuicebeetlejuicebeetlejuice"
     realm: InfluxDB
@@ -245,7 +245,7 @@ config:
     enabled: false
     bind_address: 25826
     database: collectd
-    retention_policy: autogen
+    retention_policy: 1d
     batch_size: 5000
     batch_pending: 10
     batch_timeout: 10s

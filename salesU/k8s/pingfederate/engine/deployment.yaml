@@ -28,6 +28,27 @@ spec:
         image: curlimages/curl:latest
         command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingfederate-admin:9999/pingfederate/app ; do echo waiting for admin ; sleep 2 ; done']
       containers:
+      # telegraf for monitoring PF engine jmx.       
+      - name: telegraf
+        image: docker.io/library/telegraf:1.9.5-alpine
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        envFrom:
+        - configMapRef:
+            name: telegraf-variables
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+        volumeMounts:
+        - mountPath: /etc/telegraf
+          name: telegraf-conf
       - envFrom:
         - configMapRef:
             name: engine-variables
@@ -36,10 +57,6 @@ spec:
             optional: true
         - configMapRef:
             name: jolokia-variables
-        env:
-          #this is what we will update with flux. new versions will be tags!
-          - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
-            value: v1
         name: engine-node
         image: pingidentity/pingfederate:10.0.0-alpine-edge
         ports:
@@ -66,29 +83,11 @@ spec:
           limits:
             memory: 1.5Gi
             cpu: "1"
-      # telegraf for monitoring PF engine jmx.       
-      - name: telegraf
-        image: docker.io/library/telegraf:1.9.5-alpine
         env:
-        - name: HOSTNAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        envFrom:
-        - configMapRef:
-            name: telegraf-variables
-        resources:
-          limits:
-            cpu: 500m
-            memory: 500Mi
-          requests:
-            cpu: 500m
-            memory: 500Mi
-        volumeMounts:
-        - mountPath: /etc/telegraf
-          name: telegraf-conf
+          #this is what we will update with flux. new versions will be tags!
+          - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
+            value: v1
       volumes:
       - configMap:
           name: telegraf-conf
         name: telegraf-conf
-      
