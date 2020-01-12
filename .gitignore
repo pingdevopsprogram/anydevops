@@ -2,4 +2,6 @@ base/global.env
 perf
 *tls-secret-patch.yaml
 network/cluster-tools/alb*
-*.DS_Store
+*.DS_Store*
+*.misc*
+*code.jmx*

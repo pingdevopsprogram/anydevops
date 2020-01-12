@@ -21,7 +21,7 @@ spec:
       labels:
         app: pingfederate
         tier: engine
-        version: "0.1"
+        version: "0.2"
     spec:
       initContainers:
       - name: init
@@ -76,6 +76,10 @@ spec:
           periodSeconds: 1
           initialDelaySeconds: 100
           failureThreshold: 1
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh","-c","until test \"$i\" -eq 1; do echo waiting 20; sleep 20; i=1; done;"]
         resources:
           requests:
             memory: 1.5Gi
