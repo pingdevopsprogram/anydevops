@@ -19,7 +19,7 @@ spec:
         - --nongui
         - -t /opt/apache-jmeter/bin/authorization_code.jmx
         - -JthreadCount=1
-        - -Jduration=360
+        - -Jduration=1000
         - -JpfHost=pingfederate
         - -JapplicationName=jmeter-pod
         # - -JinfluxHost=influxdb.tick

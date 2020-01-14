@@ -7,7 +7,7 @@ metadata:
   labels:
     name: flux
   name: flux
-  namespace: ado-flux
+  namespace: anydevops
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
@@ -35,13 +35,13 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: flux
-    namespace: ado-flux
+    namespace: anydevops
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flux
-  namespace: ado-flux
+  namespace: anydevops
 spec:
   replicas: 1
   selector:
@@ -222,7 +222,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: flux-git-deploy
-  namespace: ado-flux
+  namespace: anydevops
 type: Opaque
 ---
 # memcached deployment used by Flux to cache
@@ -231,7 +231,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: memcached
-  namespace: ado-flux
+  namespace: anydevops
 spec:
   replicas: 1
   selector:
@@ -263,7 +263,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: memcached
-  namespace: ado-flux
+  namespace: anydevops
 spec:
   ports:
     - name: memcached

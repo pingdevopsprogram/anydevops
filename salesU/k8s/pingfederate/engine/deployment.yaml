@@ -79,7 +79,7 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: ["/bin/sh","-c","until test \"$i\" -eq 1; do echo waiting 20; sleep 20; i=1; done;"]
+              command: ["/bin/sh","-c","sleep 20"]
         resources:
           requests:
             memory: 1.5Gi

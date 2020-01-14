@@ -76,6 +76,7 @@ data:
       urls = ["$MONITOR_HOST"]
       database = "$DATABASE"
       write_consistency = "any"
+      retention_policy = "standard"
       timeout = "5s"
       username = "$MONITOR_USERNAME"
       password = "$MONITOR_PASSWORD"

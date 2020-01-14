@@ -40,4 +40,4 @@ spec:
         env:
           #this is what we will update with flux. new versions will be tags!
           - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
-            value: v1
+            value: v2
