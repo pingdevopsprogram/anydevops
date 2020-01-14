@@ -58,7 +58,7 @@ spec:
         - configMapRef:
             name: jolokia-variables
         name: engine-node
-        image: pingidentity/pingfederate:10.0.0-alpine-edge
+        image: pingidentity/pingfederate:10.0.0
         ports:
         - name: runtime
           containerPort: 9031
