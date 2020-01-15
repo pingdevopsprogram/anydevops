@@ -83,3 +83,4 @@ data:
 kind: ConfigMap
 metadata:
   name: telegraf-conf
+  namespace: anydevops

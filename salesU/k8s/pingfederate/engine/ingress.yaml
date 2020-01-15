@@ -8,6 +8,7 @@ metadata:
     app: pingfederate
     tier: engine
   name: pingfederate
+  namespace: anydevops
 spec:
   rules:
   - host: pingfederate.anydevops.com

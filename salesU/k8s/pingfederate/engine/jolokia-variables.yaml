@@ -6,3 +6,4 @@ data:
 kind: ConfigMap
 metadata:
   name: jolokia-variables
+  namespace: anydevops

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pingfederate
+  namespace: anydevops
   labels:
     app: pingfederate
     tier: engine

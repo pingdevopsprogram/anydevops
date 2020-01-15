@@ -24,3 +24,4 @@ data:
 kind: ConfigMap
 metadata:
   name: engine-variables
+  namespace: anydevops
