@@ -4,9 +4,11 @@ data:
     [global_tags]
       env = "$ENV"
     [agent]
-      interval = "1s"
-      round_interval = true
-      metric_batch_size = 1000
+      ## interval - this may be something to increase back to 1s
+      interval = "5s"
+      ## made this false to avoid conflicting collection/reporting times
+      round_interval = false
+      metric_batch_size = 10000
       metric_buffer_limit = 10000
       collection_jitter = "0s"
       flush_interval = "10s"
@@ -75,8 +77,7 @@ data:
     [[outputs.influxdb]]
       urls = ["$MONITOR_HOST"]
       database = "$DATABASE"
-      write_consistency = "any"
-      retention_policy = "standard"
+      retention_policy = "$RETENTION_POLICY"
       timeout = "5s"
       username = "$MONITOR_USERNAME"
       password = "$MONITOR_PASSWORD"

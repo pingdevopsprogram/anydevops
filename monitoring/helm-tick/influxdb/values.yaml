@@ -173,7 +173,7 @@ config:
     cache_snapshot_memory_size: 26214400
     cache_snapshot_write_cold_duration: 10m0s
     compact_full_write_cold_duration: 4h0m0s
-    max_series_per_database: 1000000
+    max_series_per_database: 100000
     max_values_per_tag: 100000
     index_version: inmem
     trace_logging_enabled: false
@@ -207,7 +207,7 @@ config:
     insecure_skip_verify: false
     ca_certs: ""
     write_concurrency: 40
-    write_buffer_size: 1000
+    write_buffer_size: 10000
   http:
     enabled: true
     bind_address: 8086
@@ -260,7 +260,7 @@ config:
     consistency_level: one
     tls_enabled: false
     certificate: /etc/ssl/influxdb.pem
-    batch_size: 1000
+    batch_size: 100000
     batch_pending: 5
     batch_timeout: 1s
     log_point_errors: true

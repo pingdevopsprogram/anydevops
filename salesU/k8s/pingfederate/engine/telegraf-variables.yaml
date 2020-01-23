@@ -1,10 +1,11 @@
 apiVersion: v1
 data:
   DATABASE: pingfederate
-  ENV: tpc
+  ENV: rollingUpdate
   MONITOR_HOST: http://influx-influxdb.tick.svc.cluster.local:8086
   MONITOR_PASSWORD: root
   MONITOR_USERNAME: root
+  RETENTION_POLICY: standard
 kind: ConfigMap
 metadata:
   name: telegraf-variables
