@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   GIT_URL: https://github.com/ping-devops-program/anydevops
-  GIT_PATH: salesU/profiles/jmeter
+  GIT_PATH: pf-rolling-update/profiles/jmeter
 kind: ConfigMap
 metadata:
   name: jmeter-variables

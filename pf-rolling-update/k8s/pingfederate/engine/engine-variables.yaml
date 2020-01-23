@@ -20,7 +20,7 @@ data:
   SERVER_PROFILE_BASELINE_PATH: baseline/pingfederate
   SERVER_PROFILE_BASELINE_PARENT: ANYDEVOPS
   SERVER_PROFILE_ANYDEVOPS_URL: https://github.com/ping-devops-program/anydevops
-  SERVER_PROFILE_ANYDEVOPS_PATH: salesU/profiles/pingfederate
+  SERVER_PROFILE_ANYDEVOPS_PATH: pf-rolling-update/profiles/pingfederate
 kind: ConfigMap
 metadata:
   name: engine-variables
