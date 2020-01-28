@@ -84,7 +84,7 @@ spec:
         - --ssh-keygen-dir=/var/fluxd/keygen
         - --git-url=git@github.com:ping-devops-program/anydevops
         - --git-branch=master
-        - --git-path=salesU/k8s/pingfederate/engine
+        - --git-path=pf-rolling-update/k8s/pingfederate/engine
         - --k8s-allow-namespace=anydevops
         image: docker.io/fluxcd/flux:1.17.0
         imagePullPolicy: IfNotPresent
