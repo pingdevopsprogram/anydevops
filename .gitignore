@@ -4,5 +4,5 @@ perf
 network/cluster-tools/alb*
 *.DS_Store*
 *.misc*
-*code.jmx*
+# *code.jmx*
 salesU/k8s/cluster-tools/commands
