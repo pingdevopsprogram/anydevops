@@ -77,10 +77,10 @@ spec:
           periodSeconds: 1
           initialDelaySeconds: 150
           failureThreshold: 1
-        lifecycle:
-          preStop:
-            exec:
-              command: ["/bin/sh","-c","sleep 20"]
+        # lifecycle:
+        #   preStop:
+        #     exec:
+        #       command: ["/bin/sh","-c","sleep 20"]
         resources:
           requests:
             memory: 1.5Gi
@@ -91,7 +91,7 @@ spec:
         env:
           #this is what we will update with flux. new versions will be tags!
           - name: SERVER_PROFILE_ANYDEVOPS_BRANCH
-            value: v2
+            value: v1
       volumes:
       - configMap:
           name: telegraf-conf
