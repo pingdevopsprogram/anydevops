@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1304977527000</longProp>
+        <longProp name="ThreadGroup.end_time">1304977527000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Java Request" enabled="true">
+          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="PDF Report Filename" elementType="Argument">
+                <stringProp name="Argument.name">PDF Report Filename</stringProp>
+                <stringProp name="Argument.value">${RESULTS_DIR}/${REPORT_NAME}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Product And Version" elementType="Argument">
+                <stringProp name="Argument.name">Product And Version</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Build" elementType="Argument">
+                <stringProp name="Argument.name">Build</stringProp>
+                <stringProp name="Argument.value">${BUILD}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Configuration" elementType="Argument">
+                <stringProp name="Argument.name">Configuration</stringProp>
+                <stringProp name="Argument.value">${CONFIGURATION}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Tester" elementType="Argument">
+                <stringProp name="Argument.name">Tester</stringProp>
+                <stringProp name="Argument.value">${TESTER}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Test Description" elementType="Argument">
+                <stringProp name="Argument.name">Test Description</stringProp>
+                <stringProp name="Argument.value">${DESCRIPTION}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Transaction Keywords" elementType="Argument">
+                <stringProp name="Argument.name">Transaction Keywords</stringProp>
+                <stringProp name="Argument.value">${KEYWORDS}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Log Directory" elementType="Argument">
+                <stringProp name="Argument.name">Log Directory</stringProp>
+                <stringProp name="Argument.value">${RESULTS_DIR}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Performance Log Base Filename" elementType="Argument">
+                <stringProp name="Argument.name">Performance Log Base Filename</stringProp>
+                <stringProp name="Argument.value">${PERFORMANCE_LOGS}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Resource Logs" elementType="Argument">
+                <stringProp name="Argument.name">Resource Logs</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Resource Logs From" elementType="Argument">
+                <stringProp name="Argument.name">Resource Logs From</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Machine Info File" elementType="Argument">
+                <stringProp name="Argument.name">Machine Info File</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Upload Results to Database" elementType="Argument">
+                <stringProp name="Argument.name">Upload Results to Database</stringProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="classname">com.pingidentity.testing.performance.integration.JMeter.PDFResultsReport</stringProp>
+        </JavaSampler>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="REPORT_NAME" elementType="Argument">
+              <stringProp name="Argument.name">REPORT_NAME</stringProp>
+              <stringProp name="Argument.value">${__property(report_name)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="RESULTS_DIR" elementType="Argument">
+              <stringProp name="Argument.name">RESULTS_DIR</stringProp>
+              <stringProp name="Argument.value">${__property(results_dir)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="VERSION" elementType="Argument">
+              <stringProp name="Argument.name">VERSION</stringProp>
+              <stringProp name="Argument.value">${__property(version)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="BUILD" elementType="Argument">
+              <stringProp name="Argument.name">BUILD</stringProp>
+              <stringProp name="Argument.value">${__property(build)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="CONFIGURATION" elementType="Argument">
+              <stringProp name="Argument.name">CONFIGURATION</stringProp>
+              <stringProp name="Argument.value">${__property(configuration)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="TESTER" elementType="Argument">
+              <stringProp name="Argument.name">TESTER</stringProp>
+              <stringProp name="Argument.value">${__property(tester)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="DESCRIPTION" elementType="Argument">
+              <stringProp name="Argument.name">DESCRIPTION</stringProp>
+              <stringProp name="Argument.value">${__property(description)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="KEYWORDS" elementType="Argument">
+              <stringProp name="Argument.name">KEYWORDS</stringProp>
+              <stringProp name="Argument.value">${__property(keywords)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PERFORMANCE_LOGS" elementType="Argument">
+              <stringProp name="Argument.name">PERFORMANCE_LOGS</stringProp>
+              <stringProp name="Argument.value">${__property(performance_logs)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename">/root/bcromarty/testauto/testresults/Results.xml</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
