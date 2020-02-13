@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  jmeter:
+    image: samirgandhi/cromarty-jmeter
+    environment:
+      - GIT_URL=
+      - GIT_PATH=
+    command: --nongui -t /opt/apache-jmeter/bin/authorization_code.jmx -Jreport_name=result1-useless -Jresults_dir=/opt/out -Jversion=1 -Jbuild=1 -Jconfiguration=1 -Jtester=samir -Jdescription=initial_test -Jkeywords=none -Jperformance_logs=okay
+    volumes:
+      - /Users/samirgandhi/projects/anydevops/performance-testing/results/:/opt/out
