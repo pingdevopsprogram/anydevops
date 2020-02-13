@@ -2,10 +2,15 @@ version: "3"
 
 services:
   jmeter:
-    image: samirgandhi/cromarty-jmeter
+    image: pingidentity/apache-jmeter:edge
     environment:
-      - GIT_URL=
-      - GIT_PATH=
-    command: --nongui -t /opt/apache-jmeter/bin/authorization_code.jmx -Jreport_name=result1-useless -Jresults_dir=/opt/out -Jversion=1 -Jbuild=1 -Jconfiguration=1 -Jtester=samir -Jdescription=initial_test -Jkeywords=none -Jperformance_logs=okay
+      # - GIT_URL=https://github.com/ping-devops-program/anydevops.git
+      # - GIT_PATH=performance-testing/profiles/jmeter
+      # 
+      - GIT_URL=https://github.com/ping-devops-program/anydevops
+      - GIT_PATH=pf-rolling-update/profiles/jmeter
+
+    command: --nongui -t /opt/apache-jmeter/bin/results.jmx -Jreport_name=result1-useless -Jresults_dir=/opt/out -Jversion=1 -Jbuild=1 -Jconfiguration=1 -Jtester=samir -Jdescription=initial_test -Jkeywords=none -Jperformance_logs=okay
+    # command: sh
     volumes:
       - /Users/samirgandhi/projects/anydevops/performance-testing/results/:/opt/out
