@@ -11,6 +11,8 @@ spec:
       matchLabels:
         app: pingfederate
         tier: admin
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
