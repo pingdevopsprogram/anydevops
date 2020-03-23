@@ -30,7 +30,7 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="user" elementType="Argument">
               <stringProp name="Argument.name">user</stringProp>
-              <stringProp name="Argument.value">autogen.user.${__Random(1,10500)}</stringProp>
+              <stringProp name="Argument.value">autogen.user.${__Random(1,19999)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
               <stringProp name="Argument.desc">autogen.user.${__Random(1,9999)}</stringProp>
             </elementProp>
