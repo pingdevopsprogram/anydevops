@@ -24,7 +24,7 @@ spec:
         - -JapplicationName=jmeter-pod
         # - -JinfluxHost=influxdb.tick
         # - --logfile result.txt
-        image: pingidentity/apache-jmeter:edge
+        image: pingidentity/apache-jmeter:2001-alpine
         imagePullPolicy: Always
         name: jmeter
         ports:
