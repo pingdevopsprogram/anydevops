@@ -86,6 +86,7 @@ spec:
         - --git-branch=master
         - --git-path=pf-rolling-update/k8s/pingfederate/engine
         - --k8s-allow-namespace=anydevops
+        - --git-poll-interval=5s
         image: docker.io/fluxcd/flux:1.17.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
