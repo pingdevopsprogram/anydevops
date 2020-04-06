@@ -123,7 +123,7 @@
           <stringProp name="modddn"></stringProp>
           <stringProp name="newdn"></stringProp>
           <stringProp name="test">modify</stringProp>
-          <stringProp name="base_entry_dn">uid=autogen.user.2</stringProp>
+          <stringProp name="base_entry_dn">uid=autogen.user.${userId}</stringProp>
           <elementProp name="ldaparguments" elementType="LDAPArguments" guiclass="LDAPArgumentsPanel" testclass="LDAPArguments" testname="LDAP Extended Request Defaults" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="description" elementType="LDAPArgument">
