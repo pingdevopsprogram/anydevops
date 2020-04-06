@@ -36,6 +36,28 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
+      <ConfigTestElement guiclass="LdapExtConfigGui" testclass="ConfigTestElement" testname="LDAP Extended Request Defaults" enabled="true">
+        <stringProp name="servername">${__P(pdHost,localhost)}</stringProp>
+        <stringProp name="port">${__P(pdPort,1389)}</stringProp>
+        <stringProp name="rootdn">ou=autogen,ou=people,dc=example,dc=com</stringProp>
+        <stringProp name="scope">2</stringProp>
+        <stringProp name="countlimit"></stringProp>
+        <stringProp name="timelimit"></stringProp>
+        <stringProp name="attributes"></stringProp>
+        <stringProp name="return_object">false</stringProp>
+        <stringProp name="deref_aliases">false</stringProp>
+        <stringProp name="connection_timeout">1000</stringProp>
+        <stringProp name="parseflag">false</stringProp>
+        <stringProp name="secure">false</stringProp>
+        <stringProp name="user_dn">cn=administrator</stringProp>
+        <stringProp name="user_pw">2FederateM0re</stringProp>
+        <stringProp name="comparedn"></stringProp>
+        <stringProp name="comparefilt"></stringProp>
+        <stringProp name="modddn"></stringProp>
+        <stringProp name="newdn"></stringProp>
+        <stringProp name="test">bind</stringProp>
+      </ConfigTestElement>
+      <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="LDAP - searchrate" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -51,28 +73,6 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <ConfigTestElement guiclass="LdapExtConfigGui" testclass="ConfigTestElement" testname="LDAP Extended Request Defaults" enabled="true">
-          <stringProp name="servername">${thisPdHost}</stringProp>
-          <stringProp name="port">${thisPdPort}</stringProp>
-          <stringProp name="rootdn">ou=autogen,ou=people,dc=example,dc=com</stringProp>
-          <stringProp name="scope">2</stringProp>
-          <stringProp name="countlimit"></stringProp>
-          <stringProp name="timelimit"></stringProp>
-          <stringProp name="attributes"></stringProp>
-          <stringProp name="return_object">false</stringProp>
-          <stringProp name="deref_aliases">false</stringProp>
-          <stringProp name="connection_timeout">1000</stringProp>
-          <stringProp name="parseflag">false</stringProp>
-          <stringProp name="secure">false</stringProp>
-          <stringProp name="user_dn">cn=administrator</stringProp>
-          <stringProp name="user_pw">2FederateM0re</stringProp>
-          <stringProp name="comparedn"></stringProp>
-          <stringProp name="comparefilt"></stringProp>
-          <stringProp name="modddn"></stringProp>
-          <stringProp name="newdn"></stringProp>
-          <stringProp name="test">bind</stringProp>
-        </ConfigTestElement>
-        <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
@@ -203,28 +203,6 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <ConfigTestElement guiclass="LdapExtConfigGui" testclass="ConfigTestElement" testname="LDAP Extended Request Defaults" enabled="true">
-          <stringProp name="servername">${thisPdHost}</stringProp>
-          <stringProp name="port">${thisPdPort}</stringProp>
-          <stringProp name="rootdn">ou=autogen,ou=people,dc=example,dc=com</stringProp>
-          <stringProp name="scope">2</stringProp>
-          <stringProp name="countlimit"></stringProp>
-          <stringProp name="timelimit"></stringProp>
-          <stringProp name="attributes"></stringProp>
-          <stringProp name="return_object">false</stringProp>
-          <stringProp name="deref_aliases">false</stringProp>
-          <stringProp name="connection_timeout">1000</stringProp>
-          <stringProp name="parseflag">false</stringProp>
-          <stringProp name="secure">false</stringProp>
-          <stringProp name="user_dn">cn=administrator</stringProp>
-          <stringProp name="user_pw">2FederateM0re</stringProp>
-          <stringProp name="comparedn"></stringProp>
-          <stringProp name="comparefilt"></stringProp>
-          <stringProp name="modddn"></stringProp>
-          <stringProp name="newdn"></stringProp>
-          <stringProp name="test">bind</stringProp>
-        </ConfigTestElement>
-        <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
