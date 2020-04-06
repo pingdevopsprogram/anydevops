@@ -37,8 +37,8 @@
       </Arguments>
       <hashTree/>
       <ConfigTestElement guiclass="LdapExtConfigGui" testclass="ConfigTestElement" testname="LDAP Extended Request Defaults" enabled="true">
-        <stringProp name="servername">${__P(pdHost,localhost)}</stringProp>
-        <stringProp name="port">${__P(pdPort,1389)}</stringProp>
+        <stringProp name="servername">${thisPdHost}</stringProp>
+        <stringProp name="port">${thisPdPort}</stringProp>
         <stringProp name="rootdn">ou=autogen,ou=people,dc=example,dc=com</stringProp>
         <stringProp name="scope">2</stringProp>
         <stringProp name="countlimit"></stringProp>
