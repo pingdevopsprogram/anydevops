@@ -13,32 +13,37 @@
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="defaultDuration" elementType="Argument">
-            <stringProp name="Argument.name">defaultDuration</stringProp>
+          <elementProp name="duration" elementType="Argument">
+            <stringProp name="Argument.name">duration</stringProp>
             <stringProp name="Argument.value">${__P(duration,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="defaultThreadCount" elementType="Argument">
-            <stringProp name="Argument.name">defaultThreadCount</stringProp>
+          <elementProp name="threadCount" elementType="Argument">
+            <stringProp name="Argument.name">threadCount</stringProp>
             <stringProp name="Argument.value">${__P(threadCount,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="thisPdHost" elementType="Argument">
-            <stringProp name="Argument.name">thisPdHost</stringProp>
+          <elementProp name="pdHost" elementType="Argument">
+            <stringProp name="Argument.name">pdHost</stringProp>
             <stringProp name="Argument.value">${__P(pdHost,localhost)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="thisPdPort" elementType="Argument">
-            <stringProp name="Argument.name">thisPdPort</stringProp>
+          <elementProp name="pdPort" elementType="Argument">
+            <stringProp name="Argument.name">pdPort</stringProp>
             <stringProp name="Argument.value">${__P(pdPort,1389)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="upperUid" elementType="Argument">
+            <stringProp name="Argument.name">upperUid</stringProp>
+            <stringProp name="Argument.value">${__P(upperUid,99999)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
       <ConfigTestElement guiclass="LdapExtConfigGui" testclass="ConfigTestElement" testname="LDAP Extended Request Defaults" enabled="true">
-        <stringProp name="servername">${thisPdHost}</stringProp>
-        <stringProp name="port">${thisPdPort}</stringProp>
+        <stringProp name="servername">${pdHost}</stringProp>
+        <stringProp name="port">${pdPort}</stringProp>
         <stringProp name="rootdn">ou=autogen,ou=people,dc=example,dc=com</stringProp>
         <stringProp name="scope">2</stringProp>
         <stringProp name="countlimit"></stringProp>
@@ -79,7 +84,7 @@
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
-            <stringProp name="maximumValue">999999</stringProp>
+            <stringProp name="maximumValue">${upperUid}</stringProp>
             <stringProp name="minimumValue">1</stringProp>
             <stringProp name="outputFormat"></stringProp>
             <boolProp name="perThread">true</boolProp>
@@ -209,7 +214,7 @@
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
-            <stringProp name="maximumValue">999999</stringProp>
+            <stringProp name="maximumValue">${upperUid}</stringProp>
             <stringProp name="minimumValue">1</stringProp>
             <stringProp name="outputFormat"></stringProp>
             <boolProp name="perThread">true</boolProp>
