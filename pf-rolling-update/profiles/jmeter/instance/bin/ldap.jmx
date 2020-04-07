@@ -222,7 +222,7 @@
             <stringProp name="variableName">userId</stringProp>
           </RandomVariableConfig>
           <hashTree/>
-          <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="LDAP Bind-mod" enabled="true">
+          <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="LDAP Bind-modify" enabled="true">
             <stringProp name="servername"></stringProp>
             <stringProp name="port"></stringProp>
             <stringProp name="rootdn"></stringProp>
