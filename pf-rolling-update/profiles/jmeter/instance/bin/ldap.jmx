@@ -69,12 +69,12 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__P(searchrateThreadCount,${defaultThreadCount})}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(searchrateThreadCount,${threadCount})}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1565902074000</longProp>
         <longProp name="ThreadGroup.end_time">1565902074000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">${__P(searchrateDuration,${defaultDuration})}</stringProp>
+        <stringProp name="ThreadGroup.duration">${__P(searchrateDuration,${duration})}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
@@ -199,12 +199,12 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__P(modrateThreadCount,${defaultThreadCount})}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(modrateThreadCount,${threadCount})}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1565902074000</longProp>
         <longProp name="ThreadGroup.end_time">1565902074000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">${__P(modrateDuration,${defaultDuration})}</stringProp>
+        <stringProp name="ThreadGroup.duration">${__P(modrateDuration,${duration})}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
