@@ -84,7 +84,7 @@
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
-            <stringProp name="maximumValue">${upperUid}</stringProp>
+            <stringProp name="maximumValue">2000000</stringProp>
             <stringProp name="minimumValue">1</stringProp>
             <stringProp name="outputFormat"></stringProp>
             <boolProp name="perThread">true</boolProp>
