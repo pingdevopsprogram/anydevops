@@ -13,37 +13,37 @@
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="this.duration" elementType="Argument">
-            <stringProp name="Argument.name">this.duration</stringProp>
+          <elementProp name="thisduration" elementType="Argument">
+            <stringProp name="Argument.name">thisduration</stringProp>
             <stringProp name="Argument.value">${__P(duration,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="this.threadCount" elementType="Argument">
-            <stringProp name="Argument.name">this.threadCount</stringProp>
+          <elementProp name="thisthreadCount" elementType="Argument">
+            <stringProp name="Argument.name">thisthreadCount</stringProp>
             <stringProp name="Argument.value">${__P(threadCount,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="this.pdHost" elementType="Argument">
-            <stringProp name="Argument.name">this.pdHost</stringProp>
+          <elementProp name="thispdHost" elementType="Argument">
+            <stringProp name="Argument.name">thispdHost</stringProp>
             <stringProp name="Argument.value">${__P(pdHost,localhost)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="this.pdPort" elementType="Argument">
-            <stringProp name="Argument.name">this.pdPort</stringProp>
+          <elementProp name="tthispdPort" elementType="Argument">
+            <stringProp name="Argument.name">tthispdPort</stringProp>
             <stringProp name="Argument.value">${__P(pdPort,1389)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="this.upperUid" elementType="Argument">
-            <stringProp name="Argument.name">this.upperUid</stringProp>
-            <stringProp name="Argument.value">${__P(upperUid,99999)}</stringProp>
+          <elementProp name="upperUid" elementType="Argument">
+            <stringProp name="Argument.name">upperUid</stringProp>
+            <stringProp name="Argument.value">99999</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
       <ConfigTestElement guiclass="LdapExtConfigGui" testclass="ConfigTestElement" testname="LDAP Extended Request Defaults" enabled="true">
-        <stringProp name="servername">${this.pdHost}</stringProp>
-        <stringProp name="port">${this.pdPort}</stringProp>
+        <stringProp name="servername">${thispdHost}</stringProp>
+        <stringProp name="port">${thispdPort}</stringProp>
         <stringProp name="rootdn">ou=autogen,ou=people,dc=example,dc=com</stringProp>
         <stringProp name="scope">2</stringProp>
         <stringProp name="countlimit"></stringProp>
@@ -84,7 +84,7 @@
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
-            <stringProp name="maximumValue">${this.upperUid}</stringProp>
+            <stringProp name="maximumValue">${upperUid}</stringProp>
             <stringProp name="minimumValue">1</stringProp>
             <stringProp name="outputFormat"></stringProp>
             <boolProp name="perThread">true</boolProp>
@@ -214,7 +214,7 @@
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
-            <stringProp name="maximumValue">${this.upperUid}</stringProp>
+            <stringProp name="maximumValue">${upperUid}</stringProp>
             <stringProp name="minimumValue">1</stringProp>
             <stringProp name="outputFormat"></stringProp>
             <boolProp name="perThread">true</boolProp>
