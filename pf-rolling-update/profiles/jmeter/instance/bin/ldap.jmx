@@ -28,8 +28,8 @@
             <stringProp name="Argument.value">${__P(pdHost,localhost)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="tthispdPort" elementType="Argument">
-            <stringProp name="Argument.name">tthispdPort</stringProp>
+          <elementProp name="thispdPort" elementType="Argument">
+            <stringProp name="Argument.name">thispdPort</stringProp>
             <stringProp name="Argument.value">${__P(pdPort,1389)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
