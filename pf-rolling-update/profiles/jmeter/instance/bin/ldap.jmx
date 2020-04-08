@@ -149,7 +149,7 @@
             <stringProp name="searchfilter">(objectClass=person)</stringProp>
           </LDAPExtSampler>
           <hashTree/>
-          <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Invalid random user ID" enabled="true">
+          <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Invalid random user ID" enabled="false">
             <stringProp name="maximumValue">9${upperUid}</stringProp>
             <stringProp name="minimumValue">1${upperUid}</stringProp>
             <stringProp name="outputFormat"></stringProp>
@@ -158,7 +158,7 @@
             <stringProp name="variableName">invalidUserId</stringProp>
           </RandomVariableConfig>
           <hashTree/>
-          <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="Search user entry" enabled="true">
+          <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="Search user entry" enabled="false">
             <stringProp name="servername"></stringProp>
             <stringProp name="port"></stringProp>
             <stringProp name="rootdn"></stringProp>
