@@ -1,0 +1,74 @@
+version: "3.5"
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes: 
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - pingnet
+
+  jmeter:
+    image: pingidentity/apache-jmeter:edge
+    # image: pingidentity/apache-jmeter:5.2.1-alpine-az8-prom-listener-3ebe
+    environment: 
+      - STARTUP_FOREGROUND_OPTS=--nongui -t /opt/out/instance/bin/prometheus-jmeter.jmx
+      - MAX_HEAP_SIZE=2g
+    expose:
+      - 9270
+    ports:
+      - 9270:9270
+    volumes:
+      - ./prometheus-jmeter.jmx:/opt/in/instance/bin/prometheus-jmeter.jmx
+    networks:
+      - pingnet
+
+  pingfederate:
+    image: pingidentity/pingfederate:${PING_IDENTITY_DEVOPS_TAG}
+    command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
+      - SERVER_PROFILE_PATH=baseline/pingfederate
+      - PING_IDENTITY_ACCEPT_EULA=YES
+      - VERBOSE=false
+    env_file:
+      - ~/.pingidentity/devops
+    ports:
+      - 9031:9031
+      - 9999:9999
+    networks:
+      - pingnet
+
+  pingdirectory:
+    image: pingidentity/pingdirectory:${PING_IDENTITY_DEVOPS_TAG}
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
+      - SERVER_PROFILE_PATH=baseline/pingdirectory
+      - PING_IDENTITY_ACCEPT_EULA=YES
+      - MAKELDIF_USERS=100
+    env_file:
+      - ~/.pingidentity/devops
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - 1636:636
+      - 1443:443
+      - 1389:389
+    networks:
+      - pingnet
+                    
+  pingdataconsole:
+    image: pingidentity/pingdataconsole:${PING_IDENTITY_DEVOPS_TAG}
+    ports:
+      - 8443:8443
+    networks:
+      - pingnet
+
+networks:
+    pingnet:

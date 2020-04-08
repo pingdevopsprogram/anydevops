@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jmeter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jmeter
+        company: PingIdentity
+      name: jmeter
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: jmeter-variables
+        image: pingidentity/apache-jmeter:edge
+        imagePullPolicy: Always
+        name: jmeter
+        ports:
+        - containerPort: 1099
+          protocol: TCP
+        - containerPort: 50000
+          protocol: TCP
+        - containerPort: 9270
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 1
+            memory: 1Gi
+          requests:
+            cpu: 1
+            memory: 1Gi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: jmeter
+  labels:
+    app: jmeter
+spec:
+  ports:
+  - port: 9270
+    name: metrics
+    targetPort: 9270
+  selector:
+    app: jmeter
+  sessionAffinity: None

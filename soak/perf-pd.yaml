@@ -1,0 +1,142 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"StatefulSet","metadata":{"annotations":{},"labels":{"role":"pingdirectory"},"name":"pingdirectory","namespace":"perf-pingdirectory"},"spec":{"replicas":3,"selector":{"matchLabels":{"role":"pingdirectory"}},"serviceName":"pingdirectory","template":{"metadata":{"labels":{"alpha.eksctl.io/nodegroup-name":"perf-pingdirectory","role":"pingdirectory"},"name":"pingdirectory"},"spec":{"containers":[{"args":["--statsd.mapping-config=/tmp/mapping/pingdirectory-statsd-mapping.yml","--statsd.listen-udp=:8125","--web.listen-address=:9102"],"image":"prom/statsd-exporter:v0.14.1","name":"pingdirectory-statsd-exporter","ports":[{"containerPort":9102,"protocol":"TCP"},{"containerPort":8125,"protocol":"UDP"}],"volumeMounts":[{"mountPath":"/tmp/mapping/","name":"pingdirectory-statsd-mapping","readOnly":false}]},{"envFrom":[{"configMapRef":{"name":"pingdirectory-environment-variables"}},{"secretRef":{"name":"devops-secret","optional":true}}],"image":"pingidentity/pingdirectory:edge","imagePullPolicy":"Always","lifecycle":{"preStop":{"exec":{"command":["/bin/sh","-c","/preStop.sh"]}}},"livenessProbe":{"exec":{"command":["/bin/sh","-c","/opt/liveness.sh"]},"initialDelaySeconds":1000,"periodSeconds":30},"name":"pingdirectory","ports":[{"containerPort":636},{"containerPort":443},{"containerPort":389}],"readinessProbe":{"exec":{"command":["/bin/sh","-c","/opt/liveness.sh"]}},"volumeMounts":[{"mountPath":"/opt/out","name":"out-dir"}]}],"nodeSelector":{"role":"performance"},"terminationGracePeriodSeconds":300,"volumes":[{"name":"out-dir","persistentVolumeClaim":{"claimName":"out-dir"}},{"configMap":{"name":"pingdirectory-statsd-mapping"},"name":"pingdirectory-statsd-mapping"}]}},"volumeClaimTemplates":[{"metadata":{"name":"out-dir"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"10Gi"}},"storageClassName":"pingdirectory-gp2"}}]}}
+  creationTimestamp: "2020-04-01T21:09:03Z"
+  generation: 1
+  labels:
+    role: pingdirectory
+  name: pingdirectory
+  namespace: perf-pingdirectory
+  resourceVersion: "82780750"
+  selfLink: /apis/apps/v1/namespaces/perf-pingdirectory/statefulsets/pingdirectory
+  uid: 03ca868d-745d-11ea-b8d0-06548f228744
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      role: pingdirectory
+  serviceName: pingdirectory
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        alpha.eksctl.io/nodegroup-name: perf-pingdirectory
+        role: pingdirectory
+      name: pingdirectory
+    spec:
+      containers:
+      - args:
+        - --statsd.mapping-config=/tmp/mapping/pingdirectory-statsd-mapping.yml
+        - --statsd.listen-udp=:8125
+        - --web.listen-address=:9102
+        image: prom/statsd-exporter:v0.14.1
+        imagePullPolicy: IfNotPresent
+        name: pingdirectory-statsd-exporter
+        ports:
+        - containerPort: 9102
+          protocol: TCP
+        - containerPort: 8125
+          protocol: UDP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /tmp/mapping/
+          name: pingdirectory-statsd-mapping
+      - envFrom:
+        - configMapRef:
+            name: pingdirectory-environment-variables
+        - secretRef:
+            name: devops-secret
+            optional: true
+        image: pingidentity/pingdirectory:edge
+        imagePullPolicy: Always
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - /preStop.sh
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/liveness.sh
+          failureThreshold: 3
+          initialDelaySeconds: 1000
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: pingdirectory
+        ports:
+        - containerPort: 636
+          protocol: TCP
+        - containerPort: 443
+          protocol: TCP
+        - containerPort: 389
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/liveness.sh
+          failureThreshold: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/out
+          name: out-dir
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        role: performance
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 300
+      volumes:
+      - name: out-dir
+        persistentVolumeClaim:
+          claimName: out-dir
+      - configMap:
+          defaultMode: 420
+          name: pingdirectory-statsd-mapping
+        name: pingdirectory-statsd-mapping
+  updateStrategy:
+    rollingUpdate:
+      partition: 0
+    type: RollingUpdate
+  volumeClaimTemplates:
+  - metadata:
+      creationTimestamp: null
+      name: out-dir
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: pingdirectory-gp2
+      volumeMode: Filesystem
+    status:
+      phase: Pending
+status:
+  collisionCount: 0
+  currentReplicas: 3
+  currentRevision: pingdirectory-64bf74dc47
+  observedGeneration: 1
+  readyReplicas: 3
+  replicas: 3
+  updateRevision: pingdirectory-64bf74dc47
+  updatedReplicas: 3

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: pingtoolkit
+  name: pingtoolkit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: pingtoolkit
+  template:
+    metadata:
+      labels:
+        role: pingtoolkit
+      name: pingtoolkit
+    spec:
+      containers:
+      - image: pingidentity/pingtoolkit:edge
+        imagePullPolicy: Always
+        name: pingtoolkit
+        resources:
+          limits:
+            cpu: ".5"
+            memory: .5Gi
+          requests:
+            cpu: ".5"
+            memory: .5Gi
+      serviceAccountName: ping-serviceaccount
+      initContainers:
+      - name: init
+        env:
+          - name: SERVER_PROFILE_URL
+            value: https://github.com/kveeriaha/pingidentity-server-profiles
+          - name: SERVER_PROFILE_PATH
+            value: /readiness_scripts
+          - name: STARTUP_COMMAND
+            value: '/opt/staging/pds-readiness.sh'
+        image: pingidentity/pingtoolkit:edge
