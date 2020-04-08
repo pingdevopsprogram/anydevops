@@ -1,0 +1,65 @@
+apiVersion: v1
+data:
+  SERVER_PROFILE_URL: https://github.com/ping-devops-program/anydevops
+  SERVER_PROFILE_PATH: pf-rolling-update/profiles/jmeter
+  STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap.jmx -JpdHost=pingdirectory -JpdPort=389 -JthreadCount=1 -Jduration=1000 -JwriteDb=jmeter-ldap
+  # storing other options here:
+  # --logfile result.txt
+  #  -JapplicationName=jmeter-ldap -JtestName=pd-bind-search-mod 
+  
+  # TODO: this isnt working
+  # -JupperUid=999999
+  # MAX_HEAP_SIZE: 2g
+kind: ConfigMap
+metadata:
+  name: jmeter-variables
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jmeter-ldap
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jmeter-ldap
+        company: PingIdentity
+      name: jmeter-ldap
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: jmeter-variables
+        image: pingidentity/apache-jmeter:edge
+        imagePullPolicy: Always
+        name: jmeter-ldap
+        ports:
+        - containerPort: 1099
+          protocol: TCP
+        - containerPort: 50000
+          protocol: TCP
+        - containerPort: 9270
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 1
+            memory: 1Gi
+          requests:
+            cpu: 1
+            memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jmeter-ldap
+  labels:
+    app: jmeter-ldap
+spec:
+  ports:
+  - port: 9270
+    name: metrics
+    targetPort: 9270
+  selector:
+    app: jmeter-ldap
+  sessionAffinity: None
