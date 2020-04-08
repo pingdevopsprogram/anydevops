@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+  PING_IDENTITY_ACCEPT_EULA: "YES"
+
+  # cluster info
+  OPERATIONAL_MODE: CLUSTERED_CONSOLE
+  DNS_QUERY_LOCATION: _bind-port._tcp.pf-cluster.soak-fullstack.svc.cluster.local
+  DNS_RECORD_TYPE: SRV
+  CLUSTER_NAME: soak-fullstack
+  CLUSTER_BIND_ADDRESS: NON_LOOPBACK
+
+  #profile info
+  PF_ENGINE_PUBLIC_HOSTNAME: pingfederate.anydevops.com
+  PF_ENGINE_PUBLIC_PORT: "443"
+  PF_ADMIN_PUBLIC_HOSTNAME: pingfederate-admin.anydevops.com
+  # SERVER_PROFILE_ANYDEVOPS_URL: https://github.com/ping-devops-program/anydevops
+  # SERVER_PROFILE_ANYDEVOPS_PATH: pf-rolling-update/profiles/pingfederate
+  # SERVER_PROFILE_SOAK_PARENT: ANYDEVOPS
+  SERVER_PROFILE_SOAK_URL: https://www.github.com/pingidentity/pingidentity-server-profiles.git
+  SERVER_PROFILE_SOAK_PATH: soak/pingdirectory
+  SERVER_PROFILE_MONITOR_PARENT: SOAK
+  SERVER_PROFILE_BASELINE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+  SERVER_PROFILE_BASELINE_PATH: baseline/pingfederate
+  SERVER_PROFILE_PARENT: BASELINE
+  SERVER_PROFILE_URL: https://github.com/pingidentity/pingidentity-server-profiles.git
+  SERVER_PROFILE_PATH: pf-dns-ping-clustering/pingfederate
+kind: ConfigMap
+metadata:
+  name: console-variables

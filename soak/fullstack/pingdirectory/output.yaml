@@ -1,0 +1,377 @@
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   labels:
+#     app: pingdirectory
+#   name: pingdirectory-gp2
+# mountOptions:
+# - discard
+# parameters:
+#   type: gp2
+# provisioner: kubernetes.io/aws-ebs
+# ---
+## Moved to profile. 
+# apiVersion: v1
+# data:
+#   15-prometheus-stats.dsconfig: |-
+#     # Enable the stats collector and the statsd monitoring endpoint
+#     # so that PD metrics can be sent to the statsd exporter
+#     # and then scraped by prometheus.
+
+#     # Create a StatsD monitoring endpoint
+#     dsconfig create-monitoring-endpoint \
+#         --type statsd \
+#         --endpoint-name StatsDExporterEndpoint \
+#         --set enabled:true \
+#         --set hostname:localhost \
+#         --set server-port:8125 \
+#         --set connection-type:unencrypted-udp
+
+#     # Enable the Stats Collector
+#     dsconfig set-plugin-prop \
+#         --plugin-name "Stats Collector" \
+#         --set enabled:true \
+#         --set server-info:extended
+# kind: ConfigMap
+# metadata:
+#   name: statsd-dsconfig
+---
+# Mappings for PingDirectory metrics sent to the statsd-exporter, which Prometheus will scrape
+# See https://github.com/prometheus/statsd_exporter
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pingdirectory-statsd-mapping
+data:
+  pingdirectory-statsd-mapping.yml: |-
+    mappings:
+        # operation response time and throughput
+      - match: "*.*.response-time"
+        name: "response_time"
+        labels:
+          operation: "$2"
+      - match: "*.*.throughput"
+        name: "throughput"
+        labels:
+          operation: "$2"
+        # connection handler metrics
+      - match: "*.*.*.*.ldap-conn-handler-bytes-read"
+        name: "LDAP_connection_handler_bytes_read"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-bytes-written"
+        name: "LDAP_connection_handler_bytes_written"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-messages-read"
+        name: "LDAP_connection_handler_messages_read"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-messages-written"
+        name: "LDAP_connection_handler_messages_written"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-search-requests"
+        name: "LDAP_connection_handler_search_requests"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-search-entries-returned"
+        name: "LDAP_connection_handler_search_entries_returned"
+        labels:
+          port: "$4"
+        # backend metrics
+      - match: "*.backend-entry-count"
+        name: "backend_entry_count"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-db-cache-percent-full"
+        name: "backend_db_cache_percent_full"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-size-on-disk"
+        name: "backend_size_on_disk"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-active-cleaner-threads"
+        name: "backend_active_cleaner_threads"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-cleaner-backlog"
+        name: "backend_cleaner_backlog"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-nodes-evicted"
+        name: "backend_nodes_evicted"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-checkpoints"
+        name: "backend_checkpoints"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-avg-checkpoint-duration"
+        name: "backend_avg_checkpoint_duration"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-time-since-last-checkpoint"
+        name: "backend_time_since_last_checkpoint"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-new-db-logs"
+        name: "backend_new_db_logs"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-random-reads"
+        name: "backend_random_reads"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-random-writes"
+        name: "backend_random_writes"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-sequential-reads"
+        name: "backend_sequential_reads"
+        labels:
+          backendID: "$1"
+      - match: "*.backend-sequential-writes"
+        name: "backend_sequential_writes"
+        labels:
+          backendID: "$1"
+        # entry cache metrics
+      - match: "*.entry-cache-hit-ratio"
+        name: "entry_cache_hit_ratio"
+        labels:
+          entryCache: "$1"
+      - match: "*.entry-cache-hit-count"
+        name: "entry_cache_hit_count"
+        labels:
+          entryCache: "$1"
+      - match: "*.entry-cache-attempts"
+        name: "entry_cache_attempts"
+        labels:
+          entryCache: "$1"
+      - match: "*.entry-cache-add-or-update"
+        name: "entry_cache_add_or_update"
+        labels:
+          entryCache: "$1"
+      - match: "*.entry-cache-size"
+        name: "entry_cache_size"
+        labels:
+          entryCache: "$1"
+      - match: "*.entry-cache-pct-full"
+        name: "entry_cache_pct_full"
+        labels:
+          entryCache: "$1"
+        # changelog metrics?
+      - match: "changelog.*"
+        name: "$1"
+        lables:
+          backendID: "changelog"
+        # GC metrics
+      - match: "*.*.*.garbage-collections"
+        name: "garbage_collections"
+        labels:
+          gcType: "$1"
+          size: "$2"
+          cause: "$3"
+      - match: "*.*.*.garbage-collection-duration"
+        name: "garbage_collection_duration"
+        labels:
+          gcType: "$1"
+          size: "$2"
+          cause: "$3"
+      - match: "*.garbage-collection-live-mbytes"
+        name: "garbage_collection_live_megabytes"
+        labels:
+          region: "$1"
+
+---
+apiVersion: v1
+data:
+  K8S_STATEFUL_SET_NAME: pingdirectory
+  K8S_STATEFUL_SET_SERVICE_NAME: pingdirectory
+  MAKELDIF_USERS: "1000000"
+  ORCHESTRATION_TYPE: KUBERNETES
+  PING_IDENTITY_ACCEPT_EULA: "YES"
+  SERVER_PROFILE_SOAK_URL: https://www.github.com/pingidentity/pingidentity-server-profiles.git
+  SERVER_PROFILE_SOAK_PATH: soak/pingdirectory
+  SERVER_PROFILE_PARENT: SOAK
+  SERVER_PROFILE_PATH: baseline/pingdirectory
+  SERVER_PROFILE_URL: https://www.github.com/pingidentity/pingidentity-server-profiles.git
+  TAIL_LOG_FILES: '""'
+kind: ConfigMap
+metadata:
+  annotations: {}
+  labels:
+    role: pingdirectory
+  name: pingdirectory-environment-variables
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: pingdataconsole
+  name: pingdataconsole
+spec:
+  ports:
+  - name: http
+    port: 8080
+  selector:
+    role: pingdataconsole
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: pingdirectory
+  name: pingdirectory
+spec:
+  clusterIP: None
+  ports:
+  - name: ldaps
+    port: 636
+  - name: ssl
+    port: 443
+  - name: ldap
+    port: 389
+  - port: 9102
+    name: metrics
+  selector:
+    role: pingdirectory
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: pingdataconsole
+  name: pingdataconsole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: pingdataconsole
+  template:
+    metadata:
+      labels:
+        role: pingdataconsole
+      name: pingdataconsole
+    spec:
+      containers:
+      - image: pingidentity/pingdataconsole:edge
+        imagePullPolicy: Always
+        name: pingdataconsole
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1.5Gi
+          requests:
+            cpu: "1"
+            memory: 1.5Gi
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    role: pingdirectory
+  name: pingdirectory
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: pingdirectory
+  serviceName: pingdirectory
+  template:
+    metadata:
+      labels:
+        role: pingdirectory
+      name: pingdirectory
+    spec:
+      containers:
+      - name: pingdirectory-statsd-exporter
+        image: prom/statsd-exporter:v0.14.1
+        args:
+        - "--statsd.mapping-config=/tmp/mapping/pingdirectory-statsd-mapping.yml"
+        - "--statsd.listen-udp=:8125"
+        - "--web.listen-address=:9102"
+        ports:
+          - containerPort: 9102
+            protocol: TCP
+          - containerPort: 8125
+            protocol: UDP
+        volumeMounts:
+          - mountPath: /tmp/mapping/
+            name: pingdirectory-statsd-mapping
+            readOnly: false
+      - envFrom:
+        - configMapRef:
+            name: pingdirectory-environment-variables
+        - secretRef:
+            name: devops-secret
+            optional: true
+        image: pingidentity/pingdirectory:edge
+        imagePullPolicy: Always
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - /preStop.sh
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/liveness.sh
+          initialDelaySeconds: 1000
+          periodSeconds: 30
+        name: pingdirectory
+        ports:
+        - containerPort: 636
+        - containerPort: 443
+        - containerPort: 389
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/liveness.sh
+        resources:
+          limits:
+            cpu: "4"
+            memory: 6Gi
+          requests:
+            cpu: "4"
+            memory: 6Gi
+        volumeMounts:
+        - mountPath: /opt/out
+          name: out-dir
+          ##  moved to profile
+        # - mountPath: /opt/in/pd.profile/dsconfig/15-prometheus-stats.dsconfig
+        #   subPath: 15-prometheus-stats.dsconfig
+        #   name: statsd-dsconfig
+      terminationGracePeriodSeconds: 300
+      volumes:
+      - name: out-dir
+        persistentVolumeClaim:
+          claimName: out-dir
+      # - name: statsd-dsconfig
+      #   configMap:
+      #     name: statsd-dsconfig
+      - name: pingdirectory-statsd-mapping
+        configMap:
+          name: pingdirectory-statsd-mapping
+  volumeClaimTemplates:
+  - metadata:
+      name: out-dir
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: pingdirectory-gp2
