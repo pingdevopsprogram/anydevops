@@ -1,5 +1,5 @@
 base/global.env
-perf
+# perf
 *tls-secret-patch.yaml
 network/cluster-tools/alb*
 *.DS_Store*
