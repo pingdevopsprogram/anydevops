@@ -170,10 +170,10 @@ config:
 #     logging_enabled: true
   data:
     max_series_per_database: 0
+    max_values_per_tag: 0
 #     query_log_enabled: true
 #     cache_max_memory_size: 1073741824
 #     cache_snapshot_memory_size: 26214400
-#     max_values_per_tag: 100000
 #     cache_snapshot_write_cold_duration: 10m0s
 #     compact_full_write_cold_duration: 4h0m0s
 #     index_version: inmem

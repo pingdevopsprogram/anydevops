@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="threadCount" elementType="Argument">
             <stringProp name="Argument.name">threadCount</stringProp>
-            <stringProp name="Argument.value">${__P(threadCount,1)}</stringProp>
+            <stringProp name="Argument.value">${__P(threadCount,12)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="pdHost" elementType="Argument">
@@ -162,7 +162,7 @@
         <longProp name="ThreadGroup.start_time">1565902074000</longProp>
         <longProp name="ThreadGroup.end_time">1565902074000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">${__P(invalidSearchrate,${duration})}</stringProp>
+        <stringProp name="ThreadGroup.duration">${__P(invalidSearchrateDuration,${duration})}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
