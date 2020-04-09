@@ -4,7 +4,7 @@ data:
   SERVER_PROFILE_PATH: perf/profiles/jmeter
   # swap for with-errors
   # STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap.jmx -JsearchrateThreadCount=1 -JsearchrateDuration=100 -JpdHost=pingdirectory -JpdPort=389 -JthreadCount=0 -Jduration=0 -JwriteDb=jmeter-ldap
-  STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap-witherrors.jmx -JpdHost=pingdirectory -JpdPort=389 -JsearchrateThreadCount=10 -JsearchrateDuration=1000 -JthreadCount=0 -Jduration=0
+  STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap-witherrors.jmx -JpdHost=pingdirectory -JpdPort=389 -JsearchrateThreadCount=10 -JsearchrateDuration=1000 -JinvalidSearchrateThreadCount=10 -JinvalidSearchrateDuration=1000-JthreadCount=0 -Jduration=0
   # storing other options here:
   
   # --logfile result.txt
