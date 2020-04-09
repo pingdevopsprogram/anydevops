@@ -1134,7 +1134,7 @@
             </elementProp>
             <elementProp name="measurement" elementType="Argument">
               <stringProp name="Argument.name">measurement</stringProp>
-              <stringProp name="Argument.value">${__P(measurement,jmeter}</stringProp>
+              <stringProp name="Argument.value">${__P(measurement,jmeter)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="summaryOnly" elementType="Argument">
