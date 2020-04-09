@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: modrate
+  name: modrate
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: modrate
+  template:
+    metadata:
+      labels:
+        role: modrate
+      name: modrate
+    spec:
+      containers:
+      - image: pingidentity/ldap-sdk-tools:edge
+        command: ["/bin/sh"]
+        args: ["-c", "wait-for pingdirectory:389 -t 900 -- modrate -h pingdirectory -p 389 -D cn=administrator -w 2FederateM0re --entryDN 'uid=autogen.user.[1-999999],ou=autogen,ou=people,dc=example,dc=com' --attribute description --valueLength 10 -C 2FederateM0re -r 15"]
+        imagePullPolicy: Always
+        name: modrate
+        resources:
+          limits:
+            cpu: ".5"
+            memory: .5Gi
+          requests:
+            cpu: ".5"
+            memory: .5Gi
+        # terminationGracePeriodSeconds: 0

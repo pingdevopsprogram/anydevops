@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: modrate
+  name: modrate
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      role: modrate
+  template:
+    metadata:
+      labels:
+        role: modrate
+      name: modrate
+    spec:
+      containers:
+      - image: pingidentity/ldap-sdk-tools:edge
+        command: ["/bin/sh"]
+        # args: ["-c", "wait-for pingdirectory:389 -t 900 -- modrate -h pingdirectory -p 389 -D cn=administrator -w 2FederateM0re --entryDN 'uid=autogen.user.[1-999999],ou=autogen,ou=people,dc=example,dc=com' --attribute description --valueLength 12 -C 2FederateM0re --numThreads $NUM_THREADS --warmUpIntervals 12 --numIntervals 24"]
+        args: ["-c", "wait-for pingdirectory:389 -t 900 -- searchrate -h pingdirectory -p 389 -D cn=administrator -w 2FederateM0re -s sub --filter 'uid=autogen.user.[1-999999]' --baseDN ou=autogen,ou=people,dc=example,dc=com --numThreads $NUM_THREADS"]
+        # args: ["-c", "sleep 100000"]
+        # bin/modrate --entryDN "uid=user.[1-100000],ou=add1,ou=maxkhrapov,dc=example,dc=com" --attribute sn --valueLength 12 --numThreads $NUM_THREADS --warmUpIntervals 12 --numIntervals 24
+        imagePullPolicy: Always
+        env:
+          # - name: STARTUP_COMMAND
+          #   value: sh
+          - name: NUM_THREADS
+            value: "1"
+        name: modrate
+        resources:
+          limits:
+            cpu: ".5"
+            memory: .5Gi
+          requests:
+            cpu: ".5"
+            memory: .5Gi
+        # terminationGracePeriodSeconds: 0

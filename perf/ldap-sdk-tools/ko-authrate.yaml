@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: authrate-ko
+  name: authrate-ko
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: authrate-ko
+  template:
+    metadata:
+      labels:
+        role: authrate-ko
+      name: authrate-ko
+    spec:
+      containers:
+      - image: pingidentity/ldap-sdk-tools:edge
+        command: ["/bin/sh"]
+        args: ["-c", "wait-for pingdirectory:389 -t 900 -- authrate -h pingdirectory -p 389 -D cn=administrator -w 2FederateM0re -b dc=example,dc=com -f '(uid=autogen.user.[1-999999])' -C badPassword -r 1"]
+        imagePullPolicy: Always
+        name: authrate-ko
+        resources:
+          limits:
+            cpu: ".5"
+            memory: .5Gi
+          requests:
+            cpu: ".5"
+            memory: .5Gi
+        # terminationGracePeriodSeconds: 0
