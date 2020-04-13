@@ -1,0 +1,37 @@
+# some PF container cpu.. don't know if this is even woring. 
+rate(container_cpu_usage_seconds_total{container="pingfederate-engine", image!="", container!="POD"}[5m])
+
+#Mem requests (GiB)
+(sum(container_spec_memory_limit_bytes{namespace="$namespace",container_name="pingfederate"}) by (pod_name,container_name))/1073741824
+
+#CPU by cores:
+sum(rate(container_cpu_usage_seconds_total{container_name="pingfederate",namespace="$namespace"}[5m])) by (pod_name) 
+
+#CPU requests + nodegroup
+(sum(kube_pod_container_resource_requests_cpu_cores{container="pingfederate",node!="",namespace="$namespace"}) by (node,pod)) + on(node) group_left(nodegroup) (0 * label_replace(
+    (kube_node_labels),
+    "nodegroup","$1","label_alpha_eksctl_io_nodegroup_name","(.+)"
+  ))
+
+#CPU Percentage use
+(
+  label_replace(
+    (sum(rate(container_cpu_usage_seconds_total{container_name="pingfederate",namespace="$namespace"}[5m])) by (pod_name)),
+    "pod","$1","pod_name","(.+)"
+  )
+  / on (pod) 
+  (sum(kube_pod_container_resource_requests_cpu_cores{container="pingfederate",node!="",namespace="$namespace"}) by (pod))
+)*100
+
+# Memory usage GiB
+container_memory_working_set_bytes{container_name="pingfederate",namespace="$namespace"}
+
+# Memory used %
+(
+  label_replace(
+    (sum(container_memory_working_set_bytes{container_name="pingfederate",namespace="$namespace"}) by (pod_name))/1073741824,
+    "pod","$1","pod_name","(.+)"
+  )
+  / on (pod) 
+  (sum(container_spec_memory_limit_bytes{namespace="$namespace",container_name="pingfederate"}) by (pod_name,container_name))/1073741824
+)*100

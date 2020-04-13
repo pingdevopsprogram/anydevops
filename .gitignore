@@ -6,3 +6,4 @@ network/cluster-tools/alb*
 *.misc*
 # *code.jmx*
 salesU/k8s/cluster-tools/commands
+# \.*

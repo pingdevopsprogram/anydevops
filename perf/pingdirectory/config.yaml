@@ -150,6 +150,7 @@ data:
   K8S_STATEFUL_SET_NAME: pingdirectory
   K8S_STATEFUL_SET_SERVICE_NAME: pingdirectory
   MAKELDIF_USERS: "1000000"
+  MAX_HEAP_SIZE: "4g"
   ORCHESTRATION_TYPE: KUBERNETES
   PING_IDENTITY_ACCEPT_EULA: "YES"
   SERVER_PROFILE_SOAK_URL: https://www.github.com/pingidentity/pingidentity-server-profiles.git
@@ -157,7 +158,6 @@ data:
   SERVER_PROFILE_PARENT: SOAK
   SERVER_PROFILE_PATH: baseline/pingdirectory
   SERVER_PROFILE_URL: https://www.github.com/pingidentity/pingidentity-server-profiles.git
-  TAIL_LOG_FILES: '""'
 kind: ConfigMap
 metadata:
   annotations: {}
@@ -193,7 +193,7 @@ metadata:
     role: pingdirectory
   name: pingdirectory
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       role: pingdirectory
