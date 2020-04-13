@@ -2,4 +2,4 @@ base/global.env
 *tls-secret-patch.yaml
 network/cluster-tools/alb*
 salesU/k8s/cluster-tools/commands
-# \.\.*
+\.\.*
