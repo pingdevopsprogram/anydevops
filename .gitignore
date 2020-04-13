@@ -1,9 +1,5 @@
 base/global.env
-# perf
 *tls-secret-patch.yaml
 network/cluster-tools/alb*
-*.DS_Store*
-*.misc*
-# *code.jmx*
 salesU/k8s/cluster-tools/commands
-# \.*
+\.\.*
