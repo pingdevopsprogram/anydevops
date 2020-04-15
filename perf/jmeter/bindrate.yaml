@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: jmeter-modrateUser
+  name: jmeter-bindrate
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: jmeter-modrateUser
+        app: jmeter-bindrate
         company: PingIdentity
-      name: jmeter-modrateUser
+      name: jmeter-bindrate
     spec:
       containers:
       - image: pingidentity/apache-jmeter:edge
@@ -19,9 +19,9 @@ spec:
           - name: SERVER_PROFILE_PATH
             value: perf/profiles/jmeter
           - name: STARTUP_FOREGROUND_OPTS
-            value: --nongui -t /opt/out/instance/bin/ldap.jmx -JpdHost=pingdirectory -JpdPort=389 -JmodrateUserThreadCount=1 -JmodrateUserDuration=1000 -JthreadCount=0 -Jduration=0
+            value: --nongui -t /opt/out/instance/bin/ldap.jmx -JpdHost=pingdirectory -JpdPort=389 -JbindrateThreadCount=1 -JbindrateDuration=1000 -JthreadCount=0 -Jduration=0
         imagePullPolicy: Always
-        name: jmeter-modrateUser
+        name: jmeter-bindrate
         ports:
         - containerPort: 1099
           protocol: TCP

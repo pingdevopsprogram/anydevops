@@ -152,7 +152,11 @@ tolerations: []
 ## The InfluxDB image uses several environment variables to automatically
 ## configure certain parts of the server.
 ## Ref: https://hub.docker.com/_/influxdb/
-env: {}
+env: 
+  - name: INFLUXDB_DATA_MAX_VALUES_PER_TAG
+    value: "0"
+  - name: INFLUXDB_DATA_MAX_VALUES_PER_TAG
+    value: "0"
   # - name: INFLUXDB_DB
   #   value: "demo"
 
@@ -168,9 +172,9 @@ config:
 #   meta:
 #     retention_autocreate: true
 #     logging_enabled: true
-  data:
-    max_series_per_database: 0
-    max_values_per_tag: 0
+  # data:
+    # max_series_per_database: 0
+    # max_values_per_tag: 0
 #     query_log_enabled: true
 #     cache_max_memory_size: 1073741824
 #     cache_snapshot_memory_size: 26214400

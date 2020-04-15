@@ -193,7 +193,7 @@ metadata:
     role: pingdirectory
   name: pingdirectory
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       role: pingdirectory
@@ -229,7 +229,7 @@ spec:
         - secretRef:
             name: devops-secret
             optional: true
-        image: pingidentity/pingdirectory:edge
+        image: pingidentity/pingdirectory:2003
         imagePullPolicy: Always
         lifecycle:
           preStop:

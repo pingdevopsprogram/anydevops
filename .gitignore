@@ -3,3 +3,4 @@ base/global.env
 network/cluster-tools/alb*
 salesU/k8s/cluster-tools/commands
 \.\.*
+.DS_Store

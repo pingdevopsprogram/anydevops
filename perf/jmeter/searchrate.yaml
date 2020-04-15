@@ -4,7 +4,7 @@ data:
   SERVER_PROFILE_PATH: perf/profiles/jmeter
   # swap for with-errors
   # STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap-witherrors.jmx -JpdHost=pingdirectory -JpdPort=389 -JsearchrateThreadCount=10 -JsearchrateDuration=1000 -JinvalidSearchrateThreadCount=10 -JinvalidSearchrateDuration=1000 -JthreadCount=0 -Jduration=0
-  STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap-witherrors.jmx -JpdHost=pingdirectory -JpdPort=389 -JsearchrateThreadCount=10 -JsearchrateDuration=1000 -JthreadCount=0 -Jduration=0
+  STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap-witherrors.jmx -JpdHost=pingdirectory -JpdPort=389 -JsearchrateThreadCount=10 -JsearchrateDuration=1000 -JthreadCount=0 -Jduration=0 -JapplicationName=searchrate${HOSTNAME}
   # storing other options here:
   
   # --logfile result.txt
@@ -20,9 +20,9 @@ metadata:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: jmeter-ldap
+  name: jmeter-searchrate
 spec:
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
@@ -34,6 +34,13 @@ spec:
       - envFrom:
         - configMapRef:
             name: jmeter-searchrate
+        env:
+          - name: SERVER_PROFILE_URL
+            value: https://github.com/ping-devops-program/anydevops
+          - name: SERVER_PROFILE_PATH
+            value: perf/profiles/jmeter
+          - name: STARTUP_FOREGROUND_OPTS
+            value: --nongui -t /opt/out/instance/bin/ldap.jmx -JpdHost=pingdirectory -JpdPort=389 -JsearchrateThreadCount=10 -JsearchrateDuration=1000 -JthreadCount=0 -Jduration=0
         image: pingidentity/apache-jmeter:edge
         imagePullPolicy: Always
         name: jmeter-searchrate
@@ -46,23 +53,8 @@ spec:
           protocol: TCP
         resources:
           limits:
-            cpu: 1
+            cpu: 2
             memory: 1Gi
           requests:
-            cpu: 1
+            cpu: 2
             memory: 1Gi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jmeter-ldap
-  labels:
-    app: jmeter-ldap
-spec:
-  ports:
-  - port: 9270
-    name: metrics
-    targetPort: 9270
-  selector:
-    app: jmeter-ldap
-  sessionAffinity: None
