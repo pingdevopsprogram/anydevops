@@ -1,0 +1,50 @@
+{"tests":[
+  { "id": "0",
+    "THREADS": "1",
+    "REPLICAS": "2",
+    "NAMESPACE":"perf-pingdirectory",
+    "HEAP": "none",
+    "CPUS": "2",
+    "MEM": "2Gi"},
+  { "id": "1",
+    "THREADS": "2",
+    "REPLICAS": "2",
+    "NAMESPACE":"perf-pingdirectory",
+    "HEAP": "none",
+    "CPUS": "2",
+    "MEM": "2Gi"},
+  { "id": "2",
+    "THREADS": "3",
+    "REPLICAS": "2",
+    "NAMESPACE":"perf-pingdirectory",
+    "HEAP": "none",
+    "CPUS": "2",
+    "MEM": "2Gi"},
+  { "id": "3",
+    "THREADS": "1",
+    "REPLICAS": "2",
+    "NAMESPACE":"perf-pingdirectory",
+    "HEAP": "1800m",
+    "CPUS": "2",
+    "MEM": "2Gi"},
+  { "id": "4",
+    "THREADS": "2",
+    "REPLICAS": "2",
+    "NAMESPACE":"perf-pingdirectory",
+    "HEAP": "1800m",
+    "CPUS": "2",
+    "MEM": "2Gi"},
+  { "id": "5",
+    "THREADS": "3",
+    "REPLICAS": "2",
+    "NAMESPACE":"perf-pingdirectory",
+    "HEAP": "1800m",
+    "CPUS": "2",
+    "MEM": "2Gi"}
+]}
+view test-0 results at https://soak-monitoring.ping-devops.com/d/ccanxq9Zk/pingdirectory-performance-test?orgId=1&refresh=5s&from=1587060367&to=2020-04-16 13:12:09
+view test-1 results at https://soak-monitoring.ping-devops.com/d/ccanxq9Zk/pingdirectory-performance-test?orgId=1&refresh=5s&from=1587060752&to=2020-04-16 13:18:34
+view test-2 results at https://soak-monitoring.ping-devops.com/d/ccanxq9Zk/pingdirectory-performance-test?orgId=1&refresh=5s&from=1587061137&to=2020-04-16 13:24:58
+view test-3 results at https://soak-monitoring.ping-devops.com/d/ccanxq9Zk/pingdirectory-performance-test?orgId=1&refresh=5s&from=1587061520&to=2020-04-16 13:31:22
+view test-4 results at https://soak-monitoring.ping-devops.com/d/ccanxq9Zk/pingdirectory-performance-test?orgId=1&refresh=5s&from=1587061904&to=2020-04-16 13:37:46
+view test-5 results at https://soak-monitoring.ping-devops.com/d/ccanxq9Zk/pingdirectory-performance-test?orgId=1&refresh=5s&from=1587062288&to=2020-04-16 13:44:10
