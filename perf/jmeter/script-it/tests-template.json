@@ -1,0 +1,94 @@
+{ "pdCount": "3",
+  "testDuration":"361",
+  "namespace":"perf-pingdirectory",
+  "tests":[
+    { "id": "0",
+      "threadgroups": [
+        { "name":"searchrate",
+          "vars":
+            { "threads": "1",
+              "replicas": "2",
+              "heap": "1800m",
+              "cpus": "2",
+              "mem": "2Gi"
+            }
+        },
+        { "name":"modrateadmin",
+          "vars":
+            { "threads": "1",
+              "replicas": "2",
+              "heap": "1800m",
+              "cpus": "2",
+              "mem": "2Gi"
+            }
+        }
+      ]
+    },
+    { "id": "1",
+      "threadgroups": [
+        { "name":"searchrate",
+          "vars":
+            { "threads": "2",
+              "replicas": "2",
+              "heap": "1800m",
+              "cpus": "2",
+              "mem": "2Gi"
+            }
+        },
+        { "name":"modrateadmin",
+          "vars":
+            { "threads": "2",
+              "replicas": "2",
+              "heap": "1800m",
+              "cpus": "2",
+              "mem": "2Gi"
+            }
+        }
+      ]
+    },
+    { "id": "2",
+      "threadgroups": [
+        { "name":"searchrate",
+          "vars":
+            { "threads": "3",
+              "replicas": "2",
+              "heap": "1800m",
+              "cpus": "2",
+              "mem": "2Gi"
+            }
+        },
+        { "name":"modrateadmin",
+          "vars":
+            { "threads": "3",
+              "replicas": "2",
+              "heap": "1800m",
+              "cpus": "2",
+              "mem": "2Gi"
+            }
+        }
+      ]
+    },
+    { "id": "3",
+      "threadgroups": [
+        { "name":"searchrate",
+          "vars":
+            { "threads": "4",
+              "replicas": "2",
+              "heap": "1800m",
+              "cpus": "2",
+              "mem": "2Gi"
+            }
+        },
+        { "name":"modrateadmin",
+          "vars":
+            { "threads": "4",
+              "replicas": "2",
+              "heap": "1800m",
+              "cpus": "2",
+              "mem": "2Gi"
+            }
+        }
+      ]
+    }
+  ]
+}

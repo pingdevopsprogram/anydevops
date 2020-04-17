@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jmeter-${THREADGROUP}-${PDI}
+  namespace: ${NAMESPACE}
+spec:
+  replicas: ${REPLICAS}
+  template:
+    metadata:
+      labels:
+        app: jmeter-${THREADGROUP}
+        company: PingIdentity
+    spec:
+      nodeSelector:
+        role: soak
+      containers:
+      - env:
+          - name: SERVER_PROFILE_URL
+            value: https://github.com/ping-devops-program/anydevops
+          - name: SERVER_PROFILE_PATH
+            value: perf/profiles/jmeter
+          - name: STARTUP_FOREGROUND_OPTS
+            value: --nongui -t /opt/out/instance/bin/ldap.jmx -JpdHost=pingdirectory-${PDI}.pingdirectory.${NAMESPACE} -JpdPort=389 -J${THREADGROUP}ThreadCount=${THREADS} -J${THREADGROUP}Duration=10000 -JthreadCount=0 -Jduration=0
+          - name: MAX_HEAP_SIZE
+            value: ${HEAP}
+        image: pingidentity/apache-jmeter:edge
+        imagePullPolicy: Always
+        name: jmeter-${THREADGROUP}
+        ports:
+        - containerPort: 1099
+          protocol: TCP
+        - containerPort: 50000
+          protocol: TCP
+        - containerPort: 9270
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "${CPUS}"
+            memory: ${MEM}
+          requests:
+            cpu: "${CPUS}"
+            memory: ${MEM}
+
+---
+
