@@ -150,7 +150,6 @@ data:
   K8S_STATEFUL_SET_NAME: pingdirectory
   K8S_STATEFUL_SET_SERVICE_NAME: pingdirectory
   MAKELDIF_USERS: "1000000"
-  MAX_HEAP_SIZE: "4g"
   ORCHESTRATION_TYPE: KUBERNETES
   PING_IDENTITY_ACCEPT_EULA: "YES"
   SERVER_PROFILE_SOAK_URL: https://www.github.com/pingidentity/pingidentity-server-profiles.git
@@ -229,6 +228,9 @@ spec:
         - secretRef:
             name: devops-secret
             optional: true
+        env:
+          - name: MAX_HEAP_SIZE
+            value: 7372m
         image: pingidentity/pingdirectory:2003
         imagePullPolicy: Always
         lifecycle:
@@ -259,11 +261,11 @@ spec:
             - /opt/liveness.sh
         resources:
           limits:
-            cpu: "13.5"
-            memory: 110Gi
+            cpu: "4"
+            memory: 8Gi
           requests:
-            cpu: "13.5"
-            memory: 110Gi
+            cpu: "4"
+            memory: 8Gi
         volumeMounts:
         - mountPath: /opt/out
           name: out-dir
@@ -290,5 +292,5 @@ spec:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 10Gi
+          storage: 100Gi
       storageClassName: pingdirectory-gp2

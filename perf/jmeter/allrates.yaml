@@ -1,22 +1,3 @@
-apiVersion: v1
-data:
-  SERVER_PROFILE_URL: https://github.com/ping-devops-program/anydevops
-  SERVER_PROFILE_PATH: perf/profiles/jmeter
-  STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap-witherrors.jmx -JpdHost=pingdirectory -JpdPort=389 -JthreadCount=10 -Jduration=1000 -JinvalidSearchrateThreadCount=0 -JinvalidSearchrateDuration=1000
-  # swap for with-errors
-  # STARTUP_FOREGROUND_OPTS: --nongui -t /opt/out/instance/bin/ldap-witherrors.jmx -JpdHost=pingdirectory -JpdPort=389 -JsearchrateThreadCount=10 -JsearchrateDuration=1000 -JinvalidSearchrateThreadCount=10 -JinvalidSearchrateDuration=1000 -JthreadCount=0 -Jduration=0
-  # storing other options here:
-  
-  # --logfile result.txt
-  #  -JapplicationName=jmeter-ldap -JtestName=pd-bind-search-mod 
-  
-  # TODO: this isnt working
-  # -JupperUid=999999
-  # MAX_HEAP_SIZE: 2g
-kind: ConfigMap
-metadata:
-  name: jmeter-allrates
----
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -39,6 +20,8 @@ spec:
             value: perf/profiles/jmeter
           - name: STARTUP_FOREGROUND_OPTS
             value: --nongui -t /opt/out/instance/bin/ldap.jmx -JpdHost=pingdirectory -JpdPort=389 -JthreadCount=10 -Jduration=1000 -JinvalidSearchrateThreadCount=0
+          - name: MAX_HEAP_SIZE
+            value: 1g
         imagePullPolicy: Always
         name: jmeter-allrates
         ports:
