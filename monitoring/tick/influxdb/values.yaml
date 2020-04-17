@@ -13,7 +13,7 @@
 ## ref: https://hub.docker.com/r/library/influxdb/tags/
 image:
   repository: "influxdb"
-  tag: "1.7.6-alpine"
+  tag: "1.8"
   pullPolicy: IfNotPresent
   ## If specified, use these secrets to access the images
   # pullSecrets:
@@ -106,11 +106,11 @@ setDefaultUser:
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 resources:
  requests:
-   memory: 6Gi
-   cpu: 2
+   memory: 10Gi
+   cpu: "5"
  limits:
-   memory: 6Gi
-   cpu: 2
+   memory: 10Gi
+   cpu: "5"
 
 
 # Annotations to be added to InfuxDB pods
@@ -213,11 +213,11 @@ config:
 #     ca_certs: ""
 #     write_concurrency: 40
 #     write_buffer_size: 1000
-#   http:
+  http:
 #     enabled: true
 #     bind_address: 8086
 #     auth_enabled: false
-#     flux_enabled: true
+    flux-enabled: true
 #     log_enabled: true
 #     write_tracing: false
 #     pprof_enabled: true
