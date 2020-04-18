@@ -66,5 +66,6 @@ for i in $(seq 0 "${testIterations}"); do
     sleep 3
   
   kubectl delete -f "${testFile}" > /dev/null 2>&1
+  sleep 45
   rm "${testFile}"
 done
