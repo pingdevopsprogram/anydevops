@@ -84,7 +84,7 @@ dsconfig create-gateway-api-endpoint \
     --endpoint-name pd-rest-api  \
     --set inbound-base-path:/pd-rest-api  \
     --set outbound-base-path:/directory/v1  \
-    --set api-server:DS 
+    --set api-server:pingdirectory-http
 
 dsconfig set-policy-decision-service-prop \
     --set pdp-mode:embedded  \
