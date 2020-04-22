@@ -34,11 +34,17 @@ dsconfig create-load-balancing-algorithm \
     --set enabled:true  \
     --set backend-server:pingdirectory-ldap
 
-dsconfig set-store-adapter-prop \
+dsconfig create-store-adapter \
     --adapter-name user-store-adapter  \
+    --type ldap  \
     --set enabled:true  \
     --set load-balancing-algorithm:user-store-lba  \
-    --set create-dn-pattern:entryUUID=server-generated,ou=people,${USER_BASE_DN} 
+    --set structural-ldap-objectclass:inetOrgPerson  \
+    --set include-base-dn:ou=People,${USER_BASE_DN}   \
+    --set include-operational-attribute:createTimestamp  \
+    --set include-operational-attribute:modifyTimestamp  \
+    --set create-dn-pattern:entryUUID=server-generated,ou=People,${USER_BASE_DN} 
+
 
 dsconfig create-scim-resource-type \
     --type-name Users  \
