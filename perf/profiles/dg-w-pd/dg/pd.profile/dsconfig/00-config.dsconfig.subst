@@ -88,7 +88,7 @@ dsconfig create-gateway-api-endpoint \
 
 dsconfig set-policy-decision-service-prop \
     --set pdp-mode:embedded  \
-    --set "deployment-package<${STAGING_DIR}/simple.deploymentpackage" 
+    --set "deployment-package<${STAGING_DIR}/simple.SDP" 
     
 # dsconfig set-http-servlet-cross-origin-policy-prop \
 #    --policy-name development-cross-origin-policy  \
