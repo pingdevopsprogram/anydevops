@@ -8,168 +8,82 @@ dsconfig set-trust-manager-provider-prop \
     --provider-name 'Blind Trust'  \
     --set enabled:true 
 
-dsconfig create-scim-schema \
-    --schema-name urn:pingidentity:schemas:Device:1.0  \
-    --set display-name:Device 
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:schemas:Device:1.0  \
-    --attribute-name description 
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:schemas:Device:1.0  \
-    --attribute-name name  \
-    --set required:true 
+dsconfig create-external-server \
+    --server-name pingdirectory-ldap \
+    --set server-host-name:pingdirectory \
+    --set server-port:${LDAPS_PORT} \
+    --type ping-identity-ds \
+    --set "bind-dn:cn=pingdatagovernance,cn=Root DNs,cn=config" \
+    --set password<${ROOT_USER_PASSWORD_FILE} \
+    --set authorization-method:none \
+    --set location:${LOCATION} \
+    --set connection-security:ssl \
+    --set key-manager-provider:Null \
+    --set trust-manager-provider:JKS
 
 dsconfig create-external-server \
-    --server-name CentOS-76-xlarge-private-samir-01-58-39:1636  \
-    --type ping-identity-ds  \
-    --set server-host-name:CentOS-76-xlarge-private-samir-01-58-39  \
-    --set server-port:1636  \
-    --set location:Austin  \
-    --set 'bind-dn:cn=Governance User,cn=Root DNs,cn=config'  \
-    --set password:AACRg0XrYa1cILFOmqwYEvdQVvKDn2p87aA=  \
-    --set connection-security:ssl  \
-    --set key-manager-provider:Null  \
-    --set trust-manager-provider:JKS 
-
-dsconfig create-external-server \
-    --server-name DS  \
+    --server-name pingdirectory-http  \
     --type api  \
-    --set base-url:https://10.101.58.39:1443  \
+    --set base-url:https://pingdirectory:${HTTPS_PORT}  \
     --set hostname-verification-method:allow-all  \
-    --set 'trust-manager-provider:Blind Trust' 
-
-dsconfig create-external-server \
-    --server-name 'Joke API Server'  \
-    --type api  \
-    --set base-url:http://CentOS-76-xlarge-private-samir-01-58-39:3005 
-
-dsconfig create-external-server \
-    --server-name 'Policy Administration Point'  \
-    --type policy  \
-    --set base-url:https://10.101.58.39:9443  \
-    --set hostname-verification-method:allow-all  \
-    --set 'trust-manager-provider:Blind Trust'  \
-    --set shared-secret:AACRMbvBsr1rA0RswSDIK1KsFl6mWIgU9B4=  \
-    --set decision-node:e51688ff-1dc9-4b6c-bb36-8af64d02e9d1  \
-    --set branch:defaultPolicies 
+    --set 'trust-manager-provider:Blind Trust'  
 
 dsconfig create-load-balancing-algorithm \
-    --algorithm-name 'User Store LBA'  \
+    --algorithm-name user-store-lba  \
     --type failover  \
     --set enabled:true  \
-    --set backend-server:CentOS-76-xlarge-private-samir-01-58-39:1636 
-
-dsconfig create-store-adapter \
-    --adapter-name DeviceStoreAdapter  \
-    --type ldap  \
-    --set enabled:true  \
-    --set 'load-balancing-algorithm:User Store LBA'  \
-    --set structural-ldap-objectclass:device  \
-    --set include-base-dn:ou=devices,dc=example,dc=com  \
-    --set include-operational-attribute:createTimestamp  \
-    --set include-operational-attribute:modifyTimestamp  \
-    --set create-dn-pattern:entryUUID=server-generated,ou=devices,dc=example,dc=com 
-
-dsconfig create-scim-resource-type \
-    --type-name Devices  \
-    --type mapping  \
-    --set enabled:true  \
-    --set endpoint:Devices  \
-    --set primary-store-adapter:DeviceStoreAdapter  \
-    --set core-schema:urn:pingidentity:schemas:Device:1.0 
-
-dsconfig create-store-adapter-mapping \
-    --type-name Devices  \
-    --mapping-name description  \
-    --set scim-resource-type-attribute:description  \
-    --set store-adapter-attribute:description 
-
-dsconfig create-store-adapter-mapping \
-    --type-name Devices  \
-    --mapping-name name  \
-    --set scim-resource-type-attribute:name  \
-    --set store-adapter-attribute:cn  \
-    --set searchable:true 
+    --set backend-server:pingdirectory-ldap
 
 dsconfig set-store-adapter-prop \
-    --adapter-name UserStoreAdapter  \
+    --adapter-name user-store-adapter  \
     --set enabled:true  \
-    --set 'load-balancing-algorithm:User Store LBA'  \
-    --set create-dn-pattern:entryUUID=server-generated,ou=people,dc=example,dc=com 
+    --set load-balancing-algorithm:user-store-lba  \
+    --set create-dn-pattern:entryUUID=server-generated,ou=people,${USER_BASE_DN} 
 
 dsconfig create-scim-resource-type \
     --type-name Users  \
     --type pass-through  \
     --set enabled:true  \
     --set endpoint:Users  \
-    --set primary-store-adapter:UserStoreAdapter 
+    --set primary-store-adapter:user-store-adapter 
 
 dsconfig create-access-token-validator \
-    --validator-name 'Mock Access Token Validator'  \
+    --validator-name mock-access-token-validator  \
     --type mock  \
     --set enabled:true 
 
 dsconfig create-token-resource-lookup-method \
-    --validator-name 'Mock Access Token Validator'  \
-    --method-name 'User by uid'  \
+    --validator-name mock-access-token-validator  \
+    --method-name users-by-uid  \
     --type scim  \
     --set evaluation-order-index:100  \
     --set scim-resource-type:Users  \
     --set 'match-filter:uid eq "%_subject_claim_name%"' 
 
 dsconfig create-access-token-validator \
-    --validator-name 'Mock ATV'  \
+    --validator-name mock-atv  \
     --type mock  \
     --set enabled:true  \
     --set evaluation-order-index:1 
 
 dsconfig create-token-resource-lookup-method \
-    --validator-name 'Mock ATV'  \
-    --method-name 'Users by uid'  \
+    --validator-name mock-atv  \
+    --method-name users-by-uid  \
     --type scim  \
     --set evaluation-order-index:100  \
     --set scim-resource-type:Users  \
     --set 'match-filter:uid eq "%sub%"' 
 
 dsconfig create-gateway-api-endpoint \
-    --endpoint-name 'Directory REST API'  \
-    --set inbound-base-path:/ds  \
+    --endpoint-name pd-rest-api  \
+    --set inbound-base-path:/pd-rest-api  \
     --set outbound-base-path:/directory/v1  \
     --set api-server:DS 
 
-dsconfig create-gateway-api-endpoint \
-    --endpoint-name 'Random Joke API'  \
-    --set http-auth-evaluation-behavior:evaluate-and-discard  \
-    --set 'access-token-validator:Mock Access Token Validator'  \
-    --set inbound-base-path:/jokes/random  \
-    --set outbound-base-path:/jokes/random  \
-    --set 'api-server:Joke API Server' 
-
 dsconfig set-policy-decision-service-prop \
-    --set pdp-mode:external  \
-    --set 'policy-server:Policy Administration Point'  \
-    --set decision-response-view:decision-tree  \
-    --set decision-response-view:evaluated-entities  \
-    --set decision-response-view:request 
-
-dsconfig create-sideband-api-endpoint \
-    --endpoint-name 'Consent Definitions'  \
-    --set service:Consent  \
-    --set base-path:/c/definitions 
-
-dsconfig create-sideband-api-endpoint \
-    --endpoint-name 'Consent Records'  \
-    --set service:Consent  \
-    --set base-path:/c/consents 
-
+    --set pdp-mode:embedded  \
+    --set "deployment-package<${STAGING_DIR}/simple.deploymentpackage" 
+    
 dsconfig set-http-servlet-cross-origin-policy-prop \
-    --policy-name 'Development Cross-Origin Policy'  \
+    --policy-name development-cross-origin-policy  \
     --set cors-allowed-origins:* 
-
-dsconfig set-log-publisher-prop \
-    --publisher-name 'Debug Trace Logger'  \
-    --set enabled:true 
-
-
