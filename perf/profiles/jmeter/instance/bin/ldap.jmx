@@ -83,7 +83,7 @@
         <stringProp name="test">bind</stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="delayStartVar" enabled="true">
+      <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="delayStartVar" enabled="false">
         <stringProp name="variableName">delayStart</stringProp>
         <stringProp name="outputFormat">0</stringProp>
         <stringProp name="minimumValue">1</stringProp>
@@ -104,7 +104,7 @@
         <longProp name="ThreadGroup.end_time">1565902074000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">${__P(searchrateadminDuration,${duration})}</stringProp>
-        <stringProp name="ThreadGroup.delay">${delayStart}</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
