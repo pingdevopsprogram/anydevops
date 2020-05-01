@@ -87,9 +87,9 @@
         <stringProp name="variableName">delayStart</stringProp>
         <stringProp name="outputFormat">0</stringProp>
         <stringProp name="minimumValue">1</stringProp>
-        <stringProp name="maximumValue">5</stringProp>
+        <stringProp name="maximumValue">10</stringProp>
         <stringProp name="randomSeed"></stringProp>
-        <boolProp name="perThread">false</boolProp>
+        <boolProp name="perThread">true</boolProp>
       </RandomVariableConfig>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="searchrateadmin" enabled="true">
