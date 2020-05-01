@@ -132,7 +132,7 @@
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">3000</stringProp>
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random user ID" enabled="true">
@@ -354,7 +354,7 @@
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">3000</stringProp>
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Invalid random user ID" enabled="true">
@@ -432,7 +432,7 @@
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">3000</stringProp>
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Valid Random user ID" enabled="true">
@@ -508,43 +508,37 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">true</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
-        </LoopController>
-        <hashTree>
-          <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Valid Random user ID" enabled="true">
-            <stringProp name="maximumValue">${upperUid}</stringProp>
-            <stringProp name="minimumValue">1</stringProp>
-            <stringProp name="outputFormat"></stringProp>
-            <boolProp name="perThread">true</boolProp>
-            <stringProp name="randomSeed"></stringProp>
-            <stringProp name="variableName">validUserId</stringProp>
-          </RandomVariableConfig>
-          <hashTree/>
-          <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="Bind user" enabled="true">
-            <stringProp name="servername"></stringProp>
-            <stringProp name="port"></stringProp>
-            <stringProp name="rootdn"></stringProp>
-            <stringProp name="scope">0</stringProp>
-            <stringProp name="countlimit"></stringProp>
-            <stringProp name="timelimit"></stringProp>
-            <stringProp name="attributes"></stringProp>
-            <stringProp name="return_object">true</stringProp>
-            <stringProp name="deref_aliases">false</stringProp>
-            <stringProp name="connection_timeout"></stringProp>
-            <stringProp name="parseflag">false</stringProp>
-            <stringProp name="secure">false</stringProp>
-            <stringProp name="user_dn">uid=autogen.user.${validUserId},${base}</stringProp>
-            <stringProp name="user_pw"></stringProp>
-            <stringProp name="comparedn">uid=autogen.user.100</stringProp>
-            <stringProp name="comparefilt">description=12</stringProp>
-            <stringProp name="modddn"></stringProp>
-            <stringProp name="newdn"></stringProp>
-            <stringProp name="test">sbind</stringProp>
-          </LDAPExtSampler>
-          <hashTree/>
-        </hashTree>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Valid Random user ID" enabled="true">
+          <stringProp name="maximumValue">${upperUid}</stringProp>
+          <stringProp name="minimumValue">1</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <boolProp name="perThread">true</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">validUserId</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="Bind user" enabled="true">
+          <stringProp name="servername"></stringProp>
+          <stringProp name="port"></stringProp>
+          <stringProp name="rootdn"></stringProp>
+          <stringProp name="scope">0</stringProp>
+          <stringProp name="countlimit"></stringProp>
+          <stringProp name="timelimit"></stringProp>
+          <stringProp name="attributes"></stringProp>
+          <stringProp name="return_object">true</stringProp>
+          <stringProp name="deref_aliases">false</stringProp>
+          <stringProp name="connection_timeout"></stringProp>
+          <stringProp name="parseflag">false</stringProp>
+          <stringProp name="secure">false</stringProp>
+          <stringProp name="user_dn">uid=autogen.user.${validUserId},${base}</stringProp>
+          <stringProp name="user_pw"></stringProp>
+          <stringProp name="comparedn">uid=autogen.user.100</stringProp>
+          <stringProp name="comparefilt">description=12</stringProp>
+          <stringProp name="modddn"></stringProp>
+          <stringProp name="newdn"></stringProp>
+          <stringProp name="test">sbind</stringProp>
+        </LDAPExtSampler>
+        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="modrateadmin" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
@@ -659,86 +653,80 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
-          <boolProp name="LoopController.continue_forever">true</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
-        </LoopController>
-        <hashTree>
-          <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random description" enabled="true">
-            <stringProp name="maximumValue">999999999999</stringProp>
-            <stringProp name="minimumValue">0</stringProp>
-            <stringProp name="outputFormat">000000000000</stringProp>
-            <boolProp name="perThread">false</boolProp>
-            <stringProp name="randomSeed"></stringProp>
-            <stringProp name="variableName">randomDescription</stringProp>
-          </RandomVariableConfig>
-          <hashTree/>
-          <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
-            <stringProp name="maximumValue">${upperUid}</stringProp>
-            <stringProp name="minimumValue">1</stringProp>
-            <stringProp name="outputFormat"></stringProp>
-            <boolProp name="perThread">true</boolProp>
-            <stringProp name="randomSeed"></stringProp>
-            <stringProp name="variableName">userId</stringProp>
-          </RandomVariableConfig>
-          <hashTree/>
-          <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="Bind user" enabled="true">
-            <stringProp name="servername"></stringProp>
-            <stringProp name="port"></stringProp>
-            <stringProp name="rootdn"></stringProp>
-            <stringProp name="scope">1</stringProp>
-            <stringProp name="countlimit"></stringProp>
-            <stringProp name="timelimit"></stringProp>
-            <stringProp name="attributes"></stringProp>
-            <stringProp name="return_object">false</stringProp>
-            <stringProp name="deref_aliases">false</stringProp>
-            <stringProp name="connection_timeout"></stringProp>
-            <stringProp name="parseflag">false</stringProp>
-            <stringProp name="secure">false</stringProp>
-            <stringProp name="user_dn">uid=autogen.user.${userId},${base}</stringProp>
-            <stringProp name="user_pw"></stringProp>
-            <stringProp name="comparedn"></stringProp>
-            <stringProp name="comparefilt"></stringProp>
-            <stringProp name="modddn"></stringProp>
-            <stringProp name="newdn"></stringProp>
-            <stringProp name="test">bind</stringProp>
-          </LDAPExtSampler>
-          <hashTree/>
-          <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="Modify user description" enabled="true">
-            <stringProp name="TestPlan.comments">perform a single modification on the description attribute</stringProp>
-            <stringProp name="servername"></stringProp>
-            <stringProp name="port"></stringProp>
-            <stringProp name="rootdn"></stringProp>
-            <stringProp name="scope">2</stringProp>
-            <stringProp name="countlimit"></stringProp>
-            <stringProp name="timelimit"></stringProp>
-            <stringProp name="attributes"></stringProp>
-            <stringProp name="return_object">false</stringProp>
-            <stringProp name="deref_aliases">false</stringProp>
-            <stringProp name="connection_timeout"></stringProp>
-            <stringProp name="parseflag">false</stringProp>
-            <stringProp name="secure">false</stringProp>
-            <stringProp name="user_dn"></stringProp>
-            <stringProp name="user_pw"></stringProp>
-            <stringProp name="comparedn"></stringProp>
-            <stringProp name="comparefilt"></stringProp>
-            <stringProp name="modddn"></stringProp>
-            <stringProp name="newdn"></stringProp>
-            <stringProp name="test">modify</stringProp>
-            <stringProp name="base_entry_dn">uid=autogen.user.${userId}</stringProp>
-            <elementProp name="ldaparguments" elementType="LDAPArguments" guiclass="LDAPArgumentsPanel" testclass="LDAPArguments" testname="LDAP Extended Request Defaults" enabled="true">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="description" elementType="LDAPArgument">
-                  <stringProp name="Argument.name">description</stringProp>
-                  <stringProp name="Argument.value">${randomDescription}</stringProp>
-                  <stringProp name="Argument.opcode">replace</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-          </LDAPExtSampler>
-          <hashTree/>
-        </hashTree>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random description" enabled="true">
+          <stringProp name="maximumValue">999999999999</stringProp>
+          <stringProp name="minimumValue">0</stringProp>
+          <stringProp name="outputFormat">000000000000</stringProp>
+          <boolProp name="perThread">false</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">randomDescription</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
+          <stringProp name="maximumValue">${upperUid}</stringProp>
+          <stringProp name="minimumValue">1</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <boolProp name="perThread">true</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">userId</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="Bind user" enabled="true">
+          <stringProp name="servername"></stringProp>
+          <stringProp name="port"></stringProp>
+          <stringProp name="rootdn"></stringProp>
+          <stringProp name="scope">1</stringProp>
+          <stringProp name="countlimit"></stringProp>
+          <stringProp name="timelimit"></stringProp>
+          <stringProp name="attributes"></stringProp>
+          <stringProp name="return_object">false</stringProp>
+          <stringProp name="deref_aliases">false</stringProp>
+          <stringProp name="connection_timeout"></stringProp>
+          <stringProp name="parseflag">false</stringProp>
+          <stringProp name="secure">false</stringProp>
+          <stringProp name="user_dn">uid=autogen.user.${userId},${base}</stringProp>
+          <stringProp name="user_pw"></stringProp>
+          <stringProp name="comparedn"></stringProp>
+          <stringProp name="comparefilt"></stringProp>
+          <stringProp name="modddn"></stringProp>
+          <stringProp name="newdn"></stringProp>
+          <stringProp name="test">bind</stringProp>
+        </LDAPExtSampler>
+        <hashTree/>
+        <LDAPExtSampler guiclass="LdapExtTestSamplerGui" testclass="LDAPExtSampler" testname="Modify user description" enabled="true">
+          <stringProp name="TestPlan.comments">perform a single modification on the description attribute</stringProp>
+          <stringProp name="servername"></stringProp>
+          <stringProp name="port"></stringProp>
+          <stringProp name="rootdn"></stringProp>
+          <stringProp name="scope">2</stringProp>
+          <stringProp name="countlimit"></stringProp>
+          <stringProp name="timelimit"></stringProp>
+          <stringProp name="attributes"></stringProp>
+          <stringProp name="return_object">false</stringProp>
+          <stringProp name="deref_aliases">false</stringProp>
+          <stringProp name="connection_timeout"></stringProp>
+          <stringProp name="parseflag">false</stringProp>
+          <stringProp name="secure">false</stringProp>
+          <stringProp name="user_dn"></stringProp>
+          <stringProp name="user_pw"></stringProp>
+          <stringProp name="comparedn"></stringProp>
+          <stringProp name="comparefilt"></stringProp>
+          <stringProp name="modddn"></stringProp>
+          <stringProp name="newdn"></stringProp>
+          <stringProp name="test">modify</stringProp>
+          <stringProp name="base_entry_dn">uid=autogen.user.${userId}</stringProp>
+          <elementProp name="ldaparguments" elementType="LDAPArguments" guiclass="LDAPArgumentsPanel" testclass="LDAPArguments" testname="LDAP Extended Request Defaults" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="description" elementType="LDAPArgument">
+                <stringProp name="Argument.name">description</stringProp>
+                <stringProp name="Argument.value">${randomDescription}</stringProp>
+                <stringProp name="Argument.opcode">replace</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </LDAPExtSampler>
+        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="eightytwentyadmin" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
@@ -777,7 +765,7 @@
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1000</stringProp>
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random user ID" enabled="true">
@@ -1080,7 +1068,7 @@
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">100</stringProp>
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random description" enabled="true">
@@ -1193,7 +1181,7 @@
       <hashTree>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1000</stringProp>
         </LoopController>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
