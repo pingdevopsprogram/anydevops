@@ -205,7 +205,7 @@
           <stringProp name="attributes"></stringProp>
           <stringProp name="return_object">false</stringProp>
           <stringProp name="deref_aliases">false</stringProp>
-          <stringProp name="connection_timeout"></stringProp>
+          <stringProp name="connection_timeout">400</stringProp>
           <stringProp name="parseflag">false</stringProp>
           <stringProp name="secure">false</stringProp>
           <stringProp name="user_dn">uid=autogen.user.${userId},${base}</stringProp>
