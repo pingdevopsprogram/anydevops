@@ -83,6 +83,15 @@
         <stringProp name="test">bind</stringProp>
       </ConfigTestElement>
       <hashTree/>
+      <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="delayStartVar" enabled="true">
+        <stringProp name="variableName">delayStart</stringProp>
+        <stringProp name="outputFormat">0</stringProp>
+        <stringProp name="minimumValue">1</stringProp>
+        <stringProp name="maximumValue">5</stringProp>
+        <stringProp name="randomSeed"></stringProp>
+        <boolProp name="perThread">false</boolProp>
+      </RandomVariableConfig>
+      <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="searchrateadmin" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -95,7 +104,7 @@
         <longProp name="ThreadGroup.end_time">1565902074000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">${__P(searchrateadminDuration,${duration})}</stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="ThreadGroup.delay">${delayStart}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
