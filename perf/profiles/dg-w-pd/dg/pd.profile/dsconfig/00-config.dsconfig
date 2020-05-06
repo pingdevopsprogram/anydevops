@@ -26,38 +26,29 @@ dsconfig create-scim-attribute \
     --attribute-name owner 
 
 dsconfig create-external-server \
-    --server-name DS  \
+    --server-name pingdirectory-http  \
     --type api  \
-    --set base-url:https://small1.ryan80.ping-eng.com:1443  \
+    --set base-url:https://pingdirectory:${HTTPS_PORT}  \
     --set hostname-verification-method:allow-all  \
     --set 'trust-manager-provider:Blind Trust' 
 
 dsconfig create-external-server \
-    --server-name 'Policy Administration Point'  \
-    --type policy  \
-    --set base-url:https://small1.ryan80.ping-eng.com:9443  \
-    --set hostname-verification-method:allow-all  \
-    --set 'trust-manager-provider:Blind Trust'  \
-    --set shared-secret:AABsbvN4XyTf0Aq0BwwqxcTat9JuzZQMl+o=  \
-    --set decision-node:e51688ff-1dc9-4b6c-bb36-8af64d02e9d1  \
-    --set branch:upstreamAPI 
-
-dsconfig create-external-server \
-    --server-name small1.ryan80.ping-eng.com:1636  \
-    --type ping-identity-ds  \
-    --set server-host-name:small1.ryan80.ping-eng.com  \
-    --set server-port:1636  \
-    --set location:Austin  \
-    --set 'bind-dn:cn=Governance User,cn=Root DNs,cn=config'  \
-    --set password:AABmGsrbr35dWLYJ5lM4PnstCwKZcOccYS0=  \
-    --set connection-security:ssl  \
-    --set key-manager-provider:Null  \
-    --set trust-manager-provider:JKS 
+    --server-name pingdirectory-ldap \
+    --set server-host-name:pingdirectory \
+    --set server-port:636 \
+    --type ping-identity-ds \
+    --set "bind-dn:cn=pingdatagovernance,cn=Root DNs,cn=config" \
+    --set password<${ROOT_USER_PASSWORD_FILE} \
+    --set authorization-method:none \
+    --set location:${LOCATION} \
+    --set connection-security:ssl \
+    --set key-manager-provider:Null \
+    --set trust-manager-provider:JKS
 
 dsconfig create-external-server \
     --server-name upstream-api  \
     --type api  \
-    --set base-url:http://small1.ryan80.ping-eng.com:3000 
+    --set base-url:http://upstream-api:3000 
 
 dsconfig create-load-balancing-algorithm \
     --algorithm-name 'User Store LBA'  \
@@ -150,7 +141,7 @@ dsconfig create-gateway-api-endpoint \
     --endpoint-name 'Directory REST API'  \
     --set inbound-base-path:/ds  \
     --set outbound-base-path:/directory/v1  \
-    --set api-server:DS 
+    --set api-server:pingdirectory-http
 
 dsconfig set-policy-decision-service-prop \
     --set pdp-mode:embedded  \
