@@ -54,7 +54,7 @@ dsconfig create-load-balancing-algorithm \
     --algorithm-name 'User Store LBA'  \
     --type failover  \
     --set enabled:true  \
-    --set backend-server:small1.ryan80.ping-eng.com:1636 
+    --set backend-server:pingdirectory-ldap
 
 dsconfig create-store-adapter \
     --adapter-name DeviceStoreAdapter  \
