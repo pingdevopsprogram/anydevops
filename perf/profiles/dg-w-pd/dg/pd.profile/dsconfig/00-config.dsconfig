@@ -124,13 +124,12 @@ dsconfig create-token-resource-lookup-method \
     --set 'match-filter:uid eq "%_subject_claim_name%"' 
 
 dsconfig create-access-token-validator \
-    --validator-name 'Mock ATV'  \
+    --validator-name mock-access-token-validator  \
     --type mock  \
-    --set enabled:true  \
-    --set evaluation-order-index:1 
+    --set enabled:true 
 
 dsconfig create-token-resource-lookup-method \
-    --validator-name 'Mock ATV'  \
+    --validator-name mock-access-token-validator  \
     --method-name 'Users by uid'  \
     --type scim  \
     --set evaluation-order-index:100  \
