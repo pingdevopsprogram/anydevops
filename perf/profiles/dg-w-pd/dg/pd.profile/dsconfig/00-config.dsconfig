@@ -19,7 +19,7 @@ dsconfig create-external-server \
     --set location:${LOCATION} \
     --set connection-security:ssl \
     --set key-manager-provider:Null \
-    --set trust-manager-provider:JKS
+    --set 'trust-manager-provider:Blind Trust'
 
 dsconfig create-external-server \
     --server-name pingdirectory-http  \
