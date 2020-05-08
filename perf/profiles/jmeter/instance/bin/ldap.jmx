@@ -70,8 +70,9 @@
           </elementProp>
           <elementProp name="dgToken" elementType="Argument">
             <stringProp name="Argument.name">dgToken</stringProp>
-            <stringProp name="Argument.value">Bearer {&quot;active&quot;:true,&quot;sub&quot;:&quot;user.0&quot;,&quot;scope&quot;:&quot;accounts&quot;}</stringProp>
+            <stringProp name="Argument.value">Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyLjAiLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwianRpIjoiZTJiYmQyZjIiLCJleHAiOjE2MTk5MDI0NzYsInNjb3BlIjoiYWNjb3VudHMiLCJpYXQiOjE1ODg3OTg0NzZ9.ZFebadbVON_Ps64qw_BD8mYCoPYfDS3lrP2ZKg2yMYxeJjWFdiPrc5bFt97iwbQQcvHRDLg5oPl5Ng0-Qoz2SpxWGO2Aytafd59EFY6BbR3n6zt4Fj-mE07CG-P33Sr9FqCGUlPCi35exsHyQ-wPu-zSQ_BksaLGcp2-LAnBqAzXuiXux75NH2dTfi35lJ-OJt-eKuLLnZ9hjDfl2snpudqqMheuSFxrbJsYhHkDqAlfK0wjDZui6OhzljupIfq0BNP2SiwzObpkX8i1fLonMpxTfCBQrGOmAL-zGGHe7TIo6TNQOLhyYxzmjGPgRmj8kcTbpyvj96YC9yKFkIU1yA</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">mockatv: Bearer {&quot;active&quot;:true,&quot;sub&quot;:&quot;user.0&quot;,&quot;scope&quot;:&quot;accounts&quot;}</stringProp>
           </elementProp>
         </collectionProp>
       </Arguments>
@@ -1377,7 +1378,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Influxdb Listener" enabled="false">
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Influxdb Listener" enabled="true">
         <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
           <collectionProp name="Arguments.arguments">
             <elementProp name="influxdbMetricsSender" elementType="Argument">
@@ -1482,43 +1483,6 @@
         </elementProp>
         <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
       </BackendListener>
-      <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
-        <boolProp name="ResultCollector.error_logging">false</boolProp>
-        <objProp>
-          <name>saveConfig</name>
-          <value class="SampleSaveConfiguration">
-            <time>true</time>
-            <latency>true</latency>
-            <timestamp>true</timestamp>
-            <success>true</success>
-            <label>true</label>
-            <code>true</code>
-            <message>true</message>
-            <threadName>true</threadName>
-            <dataType>true</dataType>
-            <encoding>false</encoding>
-            <assertions>true</assertions>
-            <subresults>true</subresults>
-            <responseData>false</responseData>
-            <samplerData>false</samplerData>
-            <xml>false</xml>
-            <fieldNames>true</fieldNames>
-            <responseHeaders>false</responseHeaders>
-            <requestHeaders>false</requestHeaders>
-            <responseDataOnError>false</responseDataOnError>
-            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-            <assertionsResultsToSave>0</assertionsResultsToSave>
-            <bytes>true</bytes>
-            <sentBytes>true</sentBytes>
-            <url>true</url>
-            <threadCounts>true</threadCounts>
-            <idleTime>true</idleTime>
-            <connectTime>true</connectTime>
-          </value>
-        </objProp>
-        <stringProp name="filename"></stringProp>
-      </ResultCollector>
       <hashTree/>
     </hashTree>
   </hashTree>
