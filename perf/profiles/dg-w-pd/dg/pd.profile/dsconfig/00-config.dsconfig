@@ -146,7 +146,7 @@ dsconfig create-identity-mapper \
     --set match-base-dn:ou=people,dc=example,dc=com 
 
 dsconfig create-access-token-validator \
-    --validator-name 'JWT Access Token Validator'  \
+    --validator-name jwt-atv  \
     --type jwt  \
     --set 'identity-mapper:User ID Identity Mapper'  \
     --set 'description:Validates signed JWTs that I create myself'  \
@@ -155,7 +155,7 @@ dsconfig create-access-token-validator \
     --set 'signing-certificate:My Cert' 
 
 dsconfig create-token-resource-lookup-method \
-    --validator-name 'JWT Access Token Validator'  \
+    --validator-name jwt-atv  \
     --method-name 'User by uid'  \
     --type scim  \
     --set evaluation-order-index:1000  \
@@ -164,21 +164,21 @@ dsconfig create-token-resource-lookup-method \
 
 dsconfig create-gateway-api-endpoint \
     --endpoint-name api-records  \
-    --set access-token-validator:mock-atv  \
+    --set access-token-validator:jwt-atv  \
     --set inbound-base-path:/api/records  \
     --set outbound-base-path:/api/records  \
     --set api-server:upstream-api 
 
 dsconfig create-gateway-api-endpoint \
     --endpoint-name jokes-random  \
-    --set access-token-validator:mock-atv  \
+    --set access-token-validator:jwt-atv  \
     --set inbound-base-path:/api/jokes/random  \
     --set outbound-base-path:/api/jokes/random  \
     --set api-server:upstream-api 
 
 dsconfig create-gateway-api-endpoint \
     --endpoint-name ob-banking-transactions  \
-    --set access-token-validator:mock-atv  \
+    --set access-token-validator:jwt-atv  \
     --set inbound-base-path:/ob/accounts/{OpenBankingAccountId}/transactions  \
     --set outbound-base-path:/ob/accounts/{OpenBankingAccountId}/transactions  \
     --set api-server:upstream-api 
