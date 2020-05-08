@@ -3,7 +3,6 @@
   "testDuration":"200",
   "cooldown": "20",
   "namespace":"perf-pingdirectory",
-  "dashboardUid": "pdperfrw",
   "tests":[
     { "id": "3thread",
       "threadgroups": [

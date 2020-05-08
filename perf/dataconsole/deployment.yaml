@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: pingdataconsole
+  name: pingdataconsole
+spec:
+  ports:
+  - name: http
+    port: 8080
+  selector:
+    role: pingdataconsole
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: pingdataconsole
+  name: pingdataconsole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: pingdataconsole
+  template:
+    metadata:
+      labels:
+        role: pingdataconsole
+      name: pingdataconsole
+    spec:
+      containers:
+      - image: pingidentity/pingdataconsole:edge
+        imagePullPolicy: Always
+        name: pingdataconsole
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1.5Gi
+          requests:
+            cpu: "1"
+            memory: 1.5Gi

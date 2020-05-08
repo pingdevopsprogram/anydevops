@@ -1,0 +1,16 @@
+Starting campaign run: searchrateadmin384:
+Start run 1 now:
+test-384thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588744303000&to=1588744505000
+test-384thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/tvn7loRXYHfHpR18ELIHlpL1wErC1JcO
+Campaign - campaigns/searchrateadmin384.json dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588744303000&to=1588744505000
+Campaign - campaigns/searchrateadmin384.json snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/0X3U2uUT1JzFxa3uRbLxRWn2BAM2IKaw
+Start run 2 now:
+test-384thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588744532000&to=1588744733000
+test-384thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/Nbi9805T8JBPMhb2ntAWOkrvL5vYfJ6z
+Campaign - campaigns/searchrateadmin384.json dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588744532000&to=1588744733000
+Campaign - campaigns/searchrateadmin384.json snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/mDmZtxj7dS9rhwA4Za5bnDNm2cudAMQy
+Start run 3 now:
+test-384thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588744760000&to=1588744962000
+test-384thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/D1G9JrOeaP74wSrNaXkgFpq2Fn7CD6XV
+Campaign - campaigns/searchrateadmin384.json dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588744760000&to=1588744962000
+Campaign - campaigns/searchrateadmin384.json snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/lel5zG5UXYoj551r4xrxhPZAGCfeWgzV

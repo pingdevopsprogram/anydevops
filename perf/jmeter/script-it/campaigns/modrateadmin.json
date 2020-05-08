@@ -1,13 +1,12 @@
 { "serverCount": "3",
-  "campaignName":"searchrateadmin",
+  "campaignName":"modrateadmin",
   "testDuration":"200",
-  "cooldown": "20",
+  "cooldown": "200",
   "namespace":"perf-pingdirectory",
-  "dashboardUid": "pdperfrw",
   "tests":[
     { "id": "3thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
             { "threads": "1",
               "replicas": "1",
@@ -21,7 +20,7 @@
     },
     { "id": "6thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
             { "threads": "2",
               "replicas": "1",
@@ -35,7 +34,7 @@
     },
     { "id": "12thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
             { "threads": "2",
               "replicas": "2",
@@ -49,7 +48,7 @@
     },
     { "id": "24thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
             { "threads": "2",
               "replicas": "4",
@@ -63,7 +62,7 @@
     },
     { "id": "48thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
             { "threads": "4",
               "replicas": "4",
@@ -77,7 +76,7 @@
     },
     { "id": "96thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
             { "threads": "4",
               "replicas": "8",
@@ -91,7 +90,7 @@
     },
     { "id": "192thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
             { "threads": "8",
               "replicas": "8",
@@ -105,21 +104,21 @@
     },
     { "id": "384thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
-          { "threads": "16",
-            "replicas": "8",
-            "heap": "3600m",
-            "cpus": "2",
-            "mem": "4Gi",
-            "pure": "true"
-          }
+            { "threads": "16",
+              "replicas": "8",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "true"
+            }
         }
       ]
     },
     { "id": "768thread",
       "threadgroups": [
-        { "name":"searchrateadmin",
+        { "name":"modrateadmin",
           "vars":
             { "threads": "32",
               "replicas": "8",

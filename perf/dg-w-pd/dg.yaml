@@ -1,0 +1,177 @@
+# the following don't need to be mapped, but will exist. 
+# active-critical-concerns:0|g
+# active-concerns:1|g
+# unavailable-alert-types:0|g
+# degraded-alert-types:0|g
+# critical-alarms:0|g
+# warning-and-above-alarms:1|g
+# gauges-at-critical-severity:0|g
+# gauges-at-warning-and-above-severity:0|g
+# ops-in-progress:0|g
+# connections:0|g
+# new-connections:0|g
+# worker-threads-busy:0|g
+# queue-size:0|g
+# memory-reserved:0.3359375|g
+# memory-reserved-percent:34|g
+# young-gen-gcs:0|g
+# young-gen-gc-duration:0|g
+# cms-old-gen-current-bytes-used:0.319866389|g
+# host-system-cpu-idle:92|g
+# host-system-cpu-iowait:0|g
+# host-system-cpu-iowait:-1|g
+# host-system-cpu-system:5|g
+# host-system-cpu-used:8|g
+# host-system-cpu-user:3|g
+# host-system-memory-free:9.63|g
+# host-system-memory-pct-free:30.08|g
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pingdatagovernance-statsd-mapping
+data:
+  pingdatagovernance-statsd-mapping.yml: |-
+    mappings:
+      - match: "*.*.*.*.ldap-conn-handler-bytes-read"
+        name: "dg_LDAP_connection_handler_bytes_read"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-bytes-written"
+        name: "dg_LDAP_connection_handler_bytes_written"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-messages-read"
+        name: "dg_LDAP_connection_handler_messages_read"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-messages-written"
+        name: "dg_LDAP_connection_handler_messages_written"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-search-requests"
+        name: "dg_LDAP_connection_handler_search_requests"
+        labels:
+          port: "$4"
+      - match: "*.*.*.*.ldap-conn-handler-search-entries-returned"
+        name: "dg_LDAP_connection_handler_search_entries_returned"
+        labels:
+          port: "$4"
+        # GC metrics
+      - match: "*.*.*.garbage-collections"
+        name: "dg_garbage_collections"
+        labels:
+          gcType: "$1"
+          size: "$2"
+          cause: "$3"
+      - match: "*.*.*.garbage-collection-duration"
+        name: "dg_garbage_collection_duration"
+        labels:
+          gcType: "$1"
+          size: "$2"
+          cause: "$3"
+      - match: "*.garbage-collection-live-mbytes"
+        name: "dg_garbage_collection_live_megabytes"
+        labels:
+          region: "$1"
+
+---
+
+apiVersion: v1
+data:
+  PING_IDENTITY_ACCEPT_EULA: "YES"
+  SERVER_PROFILE_SOAK_URL: https://www.github.com/pingidentity/pingidentity-server-profiles.git
+  SERVER_PROFILE_SOAK_PATH: soak/pingdatagovernance
+  SERVER_PROFILE_SOAK_BRANCH: pdg-consent
+  SERVER_PROFILE_PARENT: SOAK
+  SERVER_PROFILE_PATH: perf/profiles/dg-w-pd/dg
+  SERVER_PROFILE_URL: https://www.github.com/ping-devops-program/anydevops
+kind: ConfigMap
+metadata:
+  annotations: {}
+  labels:
+    role: pingdatagovernance
+  name: pingdatagovernance-environment-variables
+
+---  
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: pingdatagovernance
+  name: pingdatagovernance
+spec:
+  ports:
+  - name: http
+    port: 80
+  - name: https
+    port: 443
+  - name: ldaps
+    port: 636
+  - name: metrics
+    port: 9102
+  selector:
+    role: pingdatagovernance
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: pingdatagovernance
+  name: pingdatagovernance
+spec:
+  replicas: 1
+  # nodeSelector:
+  #   role: "performance"
+  selector:
+    matchLabels:
+      role: pingdatagovernance
+  template:
+    metadata:
+      labels:
+        role: pingdatagovernance
+      name: pingdatagovernance
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: pingdatagovernance-environment-variables
+        - secretRef:
+            name: devops-secret
+            optional: true
+        image: pingidentity/pingdatagovernance:8.1.0.0-EA-edge
+        name: pingdatagovernance
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 636
+        resources:
+          limits:
+            cpu: "4"
+            memory: 8Gi
+          requests:
+            cpu: "4"
+            memory: 8Gi
+      - name: pingdatagovernance-statsd-exporter
+        image: prom/statsd-exporter:v0.14.1
+        args:
+        - "--statsd.mapping-config=/tmp/mapping/pingdatagovernance-statsd-mapping.yml"
+        - "--statsd.listen-udp=:8125"
+        - "--web.listen-address=:9102"
+        ports:
+          - containerPort: 9102
+            protocol: TCP
+          - containerPort: 8125
+            protocol: UDP
+        volumeMounts:
+          - mountPath: /tmp/mapping/
+            name: pingdatagovernance-statsd-mapping
+            readOnly: false
+      volumes:
+      - name: pingdatagovernance-statsd-mapping
+        configMap:
+          name: pingdatagovernance-statsd-mapping

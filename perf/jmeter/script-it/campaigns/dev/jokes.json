@@ -1,0 +1,52 @@
+{ "serverName":"pingdatagovernance",
+  "serverCount": "1",
+  "campaignName":"dg-joke-api",
+  "testDuration":"200",
+  "cooldown": "20",
+  "namespace":"perf-pingdirectory",
+  "dashboardUid": "dgperfrw",
+  "tests":[
+    { "id": "1thread",
+      "threadgroups": [
+        { "name":"jokeapi",
+          "vars":
+            { "threads": "1",
+              "replicas": "1",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "3thread",
+      "threadgroups": [
+        { "name":"jokeapi",
+          "vars":
+            { "threads": "3",
+              "replicas": "1",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "6thread",
+      "threadgroups": [
+        { "name":"jokeapi",
+          "vars":
+            { "threads": "6",
+              "replicas": "1",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    }
+  ]
+}

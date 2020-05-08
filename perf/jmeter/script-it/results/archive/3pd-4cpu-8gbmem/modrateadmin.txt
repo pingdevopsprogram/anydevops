@@ -1,0 +1,64 @@
+Starting campaign run: modrateadmin:
+Start run 1 now:
+test-3thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588678525000&to=1588678727000
+test-3thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/2RAuUu56K7y0sM69rUy2dexUAsWjE3xZ
+test-6thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588678933000&to=1588679135000
+test-6thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/q65LvXhnwfnQN8iyPxqh51wsobERW81w
+test-12thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588679341000&to=1588679542000
+test-12thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/2uQFnofPs02m4256ijRIMlQTAsA7vGnY
+test-24thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588679749000&to=1588679951000
+test-24thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/Qt2zihq7FuiZH3FynOOV9v2dlrku7tM7
+test-48thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588680158000&to=1588680359000
+test-48thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/dfBxSCTV1lp68MmxDhbnnenqeKEk07Ai
+test-96thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588680566000&to=1588680767000
+test-96thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/OgMjzkIt1BW46M7o7SsLW2P2j5Cv1m54
+test-192thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588680974000&to=1588681175000
+test-192thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/1e0BB9OTIRNSLo24dzbWr1iNLBtUImMs
+test-384thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588681382000&to=1588681583000
+test-384thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/86H2PZC6hTH5FPwSDvwmkq5I5N4Indws
+test-768thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588681789000&to=1588681991000
+test-768thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/18e2ZxwEnnG0RFqQADzMQ6TI6oFVX56c
+Campaign - campaigns/modrateadmin.json dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588678525000&to=1588681991000
+Campaign - campaigns/modrateadmin.json snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/kEHNqrrc5MGF3qn6T3tDILJpharVuT3P
+Start run 2 now:
+test-3thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588682198000&to=1588682399000
+test-3thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/rB65y8ej9XYBsP26j6kuqQOv0P3YY304
+test-6thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588682606000&to=1588682808000
+test-6thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/b7qv6hTNcT2L5cU4QWQCl0kGNEjDTfx9
+test-12thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588683014000&to=1588683215000
+test-12thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/g6NQiHgJ6KKMVqs1qku2uy0qIKUDix2u
+test-24thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588683422000&to=1588683623000
+test-24thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/8pRd6jy8aNAaOl8tOYuK722xKD7Xwgw8
+test-48thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588683830000&to=1588684031000
+test-48thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/ReWwOpqHTLoKy4xE1LR6bdSpqsEWKLTE
+test-96thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588684237000&to=1588684439000
+test-96thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/35sKXSo7vsBi1IED4cfPrxhdO2AnEI0O
+test-192thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588684646000&to=1588684847000
+test-192thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/WBmFO0r8006qk4j6dDbt6zx5I67tlTB4
+test-384thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588685054000&to=1588685255000
+test-384thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/9RrKhXdrhdheJjk0cmmyEFMOmXBVUT4f
+test-768thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588685461000&to=1588685662000
+test-768thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/xwiaQsK0WTP1Sfe001aaFkNVwF8uKDj2
+Campaign - campaigns/modrateadmin.json dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588682198000&to=1588685662000
+Campaign - campaigns/modrateadmin.json snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/tVthJBRaoTa1yGFBsD9wQiqWrNi2h4M5
+Start run 3 now:
+test-3thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588685870000&to=1588686071000
+test-3thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/KVS7X6sWIQIXry1LycFsVOiV9QJaccWb
+test-6thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588686278000&to=1588686479000
+test-6thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/Yhw1lM0sDiV4cYBk2HJ2RQ5S9hFarYrx
+test-12thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588686689000&to=1588686890000
+test-12thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/og8FynkMw0UI1xNcERA75KKuTghTisY3
+test-24thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588687097000&to=1588687298000
+test-24thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/hJp5m14uIx8VXeVo1kHaCTHGRJryOgPv
+test-48thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588687505000&to=1588687706000
+test-48thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/uovutJMhZk1bqhqhOUXSJ0Sgr1vc2X0y
+test-96thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588687912000&to=1588688114000
+test-96thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/ZpM0RG0UmSXI0jAsdbGEjl8S275fznA4
+test-192thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588688320000&to=1588688522000
+test-192thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/npqZccJ66hhHtpSQAcbvtr39CDnXi2FT
+test-384thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588688728000&to=1588688930000
+test-384thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/QMvU8xs6pbs9wq9PrtLjK3pRECN47Myr
+test-768thread dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588689136000&to=1588689337000
+test-768thread snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/Jrhw4BBH1q0OH1RWRjfg0WZZdkVsxx9t
+Campaign - campaigns/modrateadmin.json dashboard: https://soak-monitoring.ping-devops.com/d/pdperfsnap/pingdirectory-performance-test?orgId=1&from=1588685870000&to=1588689337000
+Campaign - campaigns/modrateadmin.json snapshot: https://soak-monitoring.ping-devops.com/dashboard/snapshot/u6Wqr2luQcnrA6krAwO52Fj1Upkg7yZn
