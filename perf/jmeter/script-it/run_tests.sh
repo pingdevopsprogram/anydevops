@@ -47,7 +47,7 @@ testDuration=$(echo "${testsJson}" | jq -r '.testDuration')
 cooldown=$(echo "${testsJson}" | jq -r '.cooldown')
 snapName=$(echo "${testsJson}" | jq -r '.campaignName')
 dashboardUid=$(echo "${testsJson}" | jq -r '.dashboardUid')
-test -z "${dashboardUid}" && dashboardUid="pdperfrw"
+test "${dashboardUid}" = "null" && dashboardUid="pdperfrw"
 numTests=$(echo "${testsJson}" | jq -r '.tests | length')
 echo "number of tests to run: $numTests"
 testIterations=$((numTests -1))

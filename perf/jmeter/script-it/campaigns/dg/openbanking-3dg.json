@@ -1,0 +1,127 @@
+{ "serverName":"pingdatagovernance",
+  "serverCount": "3",
+  "campaignName":"openbanking-3dg",
+  "testDuration":"200",
+  "cooldown": "20",
+  "namespace":"perf-pingdirectory",
+  "dashboardUid": "dgperfrw",
+  "tests":[
+    { "id": "1thread",
+      "threadgroups": [
+        { "name":"openbanking",
+          "vars":
+            { "threads": "1",
+              "replicas": "1",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "3thread",
+      "threadgroups": [
+        { "name":"openbanking",
+          "vars":
+            { "threads": "3",
+              "replicas": "1",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "6thread",
+      "threadgroups": [
+        { "name":"openbanking",
+          "vars":
+            { "threads": "6",
+              "replicas": "1",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "12thread",
+      "threadgroups": [
+        { "name":"openbanking",
+          "vars":
+            { "threads": "12",
+              "replicas": "1",
+              "ramp":"5",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "24thread",
+      "threadgroups": [
+        { "name":"openbanking",
+          "vars":
+            { "threads": "12",
+              "replicas": "2",
+              "ramp":"5",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "48thread",
+      "threadgroups": [
+        { "name":"openbanking",
+          "vars":
+            { "threads": "12",
+              "replicas": "4",
+              "ramp":"5",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "96thread",
+      "threadgroups": [
+        { "name":"openbanking",
+          "vars":
+            { "threads": "24",
+              "replicas": "4",
+              "ramp":"10",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    },
+    { "id": "192thread",
+      "threadgroups": [
+        { "name":"openbanking",
+          "vars":
+            { "threads": "48",
+              "replicas": "4",
+              "ramp":"20",
+              "heap": "3600m",
+              "cpus": "2",
+              "mem": "4Gi",
+              "pure": "false"
+            }
+        }
+      ]
+    }
+  ]
+}

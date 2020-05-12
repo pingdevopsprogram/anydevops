@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: jmeter-${THREADGROUP}
-  namespace: ${NAMESPACE}
+  name: jmeter-openbanking
+  namespace: perf-pingdirectory
 spec:
-  replicas: ${REPLICAS}
+  replicas: 1
   selector:
     matchLabels:
-      app: jmeter-${THREADGROUP}
+      app: jmeter-openbanking
       company: PingIdentity
-  serviceName: jmeter-${THREADGROUP}
+  serviceName: jmeter-openbanking
   template:
     metadata:
       labels:
-        app: jmeter-${THREADGROUP}
+        app: jmeter-openbanking
         company: PingIdentity
     spec:
       nodeSelector:
@@ -35,13 +35,13 @@ spec:
           - name: SERVER_PROFILE_PATH
             value: perf/profiles/jmeter
           - name: STARTUP_FOREGROUND_OPTS
-            # value: --nongui -t /opt/out/instance/bin/ldap.jmx -JpdHost=pingdirectory.${NAMESPACE} -JpdPort=389 -JdgHost=pingdatagovernance.${NAMESPACE} -JdgPort=443 -J${THREADGROUP}ThreadCount=${THREADS} -J${THREADGROUP}Duration=10000 -JthreadCount=0 -Jramp=${RAMP} -Jduration=0
-            value: --nongui -t /opt/out/instance/bin/ldap.jmx -Jjmeter.save.saveservice.response_data.on_error=true -l /opt/out/instance/results/errors.jtl -JpdHost=pingdirectory.${NAMESPACE} -JpdPort=389 -JdgHost=pingdatagovernance.${NAMESPACE} -JdgPort=443 -J${THREADGROUP}ThreadCount=${THREADS} -J${THREADGROUP}Duration=10000 -JthreadCount=0 -Jramp=${RAMP} -Jduration=0
+            # value: --nongui -t /opt/out/instance/bin/ldap.jmx -JpdHost=pingdirectory.perf-pingdirectory -JpdPort=389 -JdgHost=pingdatagovernance.perf-pingdirectory -JdgPort=443 -JopenbankingThreadCount=3 -JopenbankingDuration=10000 -JthreadCount=0 -Jramp=0 -Jduration=0
+            value: --nongui -t /opt/out/instance/bin/ldap.jmx -Jjmeter.save.saveservice.response_data.on_error=true -l /opt/out/instance/results/errors.jtl -JpdHost=pingdirectory.perf-pingdirectory -JpdPort=389 -JdgHost=pingdatagovernance.perf-pingdirectory -JdgPort=443 -JopenbankingThreadCount=3 -JopenbankingDuration=10000 -JthreadCount=0 -Jramp=0 -Jduration=0
           - name: MAX_HEAP_SIZE
-            value: ${HEAP}
+            value: 3600m
         image: pingidentity/apache-jmeter:edge
         imagePullPolicy: Always
-        name: jmeter-${THREADGROUP}
+        name: jmeter-openbanking
         ports:
         - containerPort: 1099
           protocol: TCP
@@ -51,11 +51,11 @@ spec:
           protocol: TCP
         resources:
           limits:
-            cpu: "${CPUS}"
-            memory: ${MEM}
+            cpu: "2"
+            memory: 4Gi
           requests:
-            cpu: "${CPUS}"
-            memory: ${MEM}
+            cpu: "2"
+            memory: 4Gi
 
 ---
 
